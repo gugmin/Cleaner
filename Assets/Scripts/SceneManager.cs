@@ -19,7 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void EazySceneLoad()
     {
-        SceneManager.LoadScene("Lsc_EasyScene");
+        SceneManager.LoadScene("MainScene");
         Debug.Log("EasyScene");
     }
 

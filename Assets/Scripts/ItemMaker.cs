@@ -59,7 +59,8 @@ public class ItemMaker: MonoBehaviour
         //item.transform.position = brickTr;
         //item.name = currentName;
         //item.GetComponent<Rigidbody2D>().AddForce(Vector2.down * 0.008f);
-        item.transform.parent = GameObject.Find("Items").transform;
+        //item = GameObject.Find("Items");
+        Instantiate(item, position,Quaternion.identity);
     }
 
     

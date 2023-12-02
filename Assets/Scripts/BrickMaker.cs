@@ -8,9 +8,24 @@ public class BrickMaker : MonoBehaviour
     //[SerializeField] private int totalBrickCnt = 35;
 
     public GameObject brick;
-
+    bool isClear = false;
     // Start is called before the first frame update
     void Start()
+    {
+        MakeBrick();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.childCount == 0&&!isClear)
+        {
+            isClear = true;
+            StartCoroutine(GameManager.I.RoundClear());
+        }
+    }
+
+    void MakeBrick()
     {
         for (int i = 0; i < 25; i++)
         {
@@ -22,16 +37,4 @@ public class BrickMaker : MonoBehaviour
             newBrick.transform.position = new Vector3(x, y, 0);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
-
-
-
 }

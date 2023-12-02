@@ -20,16 +20,13 @@ public class BallControl : MonoBehaviour
     {
         controller = GetComponent<InputEvent>();
         ballRigidbody = GetComponent<Rigidbody2D>();
-        initPos.x = paddle.transform.position.x;
-        initPos.y = paddle.transform.position.y + 0.5f;
+        ResetPos();
     }
 
 
     void Start()
     {
         controller.OnClickEvent += Click;
-        transform.position = initPos;
-        ballRigidbody.velocity = Vector2.zero;
     }
 
     private void FixedUpdate()
@@ -54,6 +51,12 @@ public class BallControl : MonoBehaviour
         if (!isStart)
             ballRigidbody.AddForce(Vector2.up * speed);
         isStart = true;
+    }
+    private void ResetPos()
+    {
+        isStart = false;
+        ballRigidbody.velocity = Vector2.zero;
+        transform.position = paddle.transform.position + new Vector3(0, 0.5f, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

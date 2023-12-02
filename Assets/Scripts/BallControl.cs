@@ -10,16 +10,19 @@ public class BallControl : MonoBehaviour
     private Rigidbody2D ballRigidbody;
     public GameObject paddle;
     [SerializeField] private float speed;
+    Animator anim;
 
     private Vector2 direction = Vector2.zero;
     private Vector2 initPos;
     float mag;
     bool isStart = false;
+    bool isDead = false;
 
     private void Awake()
     {
         controller = GetComponent<InputEvent>();
         ballRigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         initPos.x = paddle.transform.position.x;
         initPos.y = paddle.transform.position.y + 0.5f;
     }
@@ -63,6 +66,13 @@ public class BallControl : MonoBehaviour
         {
             ballRigidbody.velocity = Vector2.zero;
             ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // 공 - 패들 : 패들->공 벡터
+        }
+        else if (collision.collider.CompareTag("BottomWall"))
+        {
+            isDead = true;
+            anim.SetBool("IsDead", true);
+            ballRigidbody.velocity = Vector2.zero;
+            Destroy(gameObject, 0.1f);
         }
     }
 }

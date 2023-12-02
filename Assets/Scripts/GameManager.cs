@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,13 +12,12 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
 
     public GameObject endPanel;
-    public TMP_Text timeTxt;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
     public TMP_Text thisScoreText;
+    public GameObject ball;
 
-    public float time;
-    float score;
+    public int score;
     public float maxScore;
 
     Scene scene;
@@ -35,14 +35,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //남은 시간을 보여주는 기능
-        time -= Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-        //제한시간 기능
-        if (time <= 0)
+        scoreTxt.text = "스코어 : " + score.ToString("");
+     
+        if (ball == null)
         {
-            //시간 0으로 표기
-            timeTxt.text = time.ToString("0 : 00");
             GameEnd();
         }
         //공이 바닥에 떨어져서 1개도 안남았을때
@@ -57,11 +53,11 @@ public class GameManager : MonoBehaviour
         if (score > maxScore)
         {
             maxScore = score;
-            maxScoreText.text = "최고점수 :" + score.ToString();
+            maxScoreText.text = "최고점수 : " + score.ToString();
         }
         else if (score < maxScore)
         {
-            thisScoreText.text = "현재점수 :" + score.ToString();
+            thisScoreText.text = "현재점수 : " + score.ToString();
         }
     }
     public void RetryGame() //다시하기

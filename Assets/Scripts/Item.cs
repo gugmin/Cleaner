@@ -13,5 +13,6 @@ public class Item : MonoBehaviour
         {
             print("æ∆¿Ã≈€ ¥Í¿Ω");
         }
+        // test
     }
 }

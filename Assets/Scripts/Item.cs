@@ -6,13 +6,17 @@ using static UnityEditor.Progress;
 public class Item : MonoBehaviour
 {
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.tag == "paddle")
+        if (collision.CompareTag("Paddle"))
         {
-            print("æ∆¿Ã≈€ ¥Í¿Ω");
+            print("∆–µÈ¥Í¿Ω");
+            Destroy(transform.gameObject);
         }
-        // test
+
+        else if (collision.CompareTag("WallBottom"))
+        {
+            Destroy(transform.gameObject);
+        }
     }
 }

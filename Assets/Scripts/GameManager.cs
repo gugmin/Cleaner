@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,15 +11,18 @@ public class GameManager : MonoBehaviour
 {
     // 게임매니저 싱글톤
     public static GameManager I;
-
+    public BallControl ballControl;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
     public TMP_Text thisScoreText;
     public GameObject ball;
-
+    public int life;
+    public int maxLife;
+    public SpriteRenderer[] lifeSprite;
     public int score;
     public float maxScore;
+    public bool isDead = false;
 
     Scene scene;
 
@@ -37,12 +41,27 @@ public class GameManager : MonoBehaviour
     {
         scoreTxt.text = "스코어 : " + score.ToString("");
      
-        if (ball == null)
+        if (isDead == true)
+        {
+            isDead = false;
+            ballControl.ReSpawn();
+        }
+        else if (life == 0)
         {
             GameEnd();
         }
-        //공이 바닥에 떨어져서 1개도 안남았을때
+    }
+    public void LostLife()
+    {
+        for (int i = 0; i < maxLife; i++)
+        {
+            lifeSprite[i].color = new Color(1, 1, 1, 0.5f);
+        }
 
+        for (int i = 0; i < life; i++)
+        {
+            lifeSprite[i].color = new Color(1, 1, 1, 1);
+        }
     }
 
     private void GameEnd()

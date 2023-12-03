@@ -9,6 +9,7 @@ public class BallControl : MonoBehaviour
     private InputEvent controller;
     private Rigidbody2D ballRigidbody;
     public GameObject paddle;
+    public GameObject ball;
     [SerializeField] private float speed;
     Animator anim;
 
@@ -16,7 +17,6 @@ public class BallControl : MonoBehaviour
     private Vector2 initPos;
     float mag;
     bool isStart = false;
-    bool isDead = false;
 
     private void Awake()
     {
@@ -30,9 +30,7 @@ public class BallControl : MonoBehaviour
 
     void Start()
     {
-        controller.OnClickEvent += Click;
-        transform.position = initPos;
-        ballRigidbody.velocity = Vector2.zero;
+        ReSpawn();
     }
 
     private void FixedUpdate()
@@ -43,13 +41,20 @@ public class BallControl : MonoBehaviour
         }
         //MoveBall(direction);
         mag = ballRigidbody.velocity.magnitude;
-        print(mag);
+        //print(mag);
         if (mag < 4f || mag > 5f)
         {
             Vector2 dir = ballRigidbody.velocity.normalized;
             ballRigidbody.velocity = Vector2.zero;
             ballRigidbody.AddForce(dir * speed);
         }
+    }
+    public void ReSpawn()
+    {
+        controller.OnClickEvent += Click;
+        transform.position = initPos;
+        ballRigidbody.velocity = Vector2.zero;
+        ball.SetActive(true);
     }
 
     private void Click()
@@ -69,10 +74,13 @@ public class BallControl : MonoBehaviour
         }
         else if (collision.collider.CompareTag("BottomWall"))
         {
-            isDead = true;
+            isStart = false;
+            GameManager.I.isDead = true;
+            GameManager.I.life -= 1;
+            GameManager.I.LostLife();
             anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(gameObject, 0.1f);
+            ball.SetActive(false);
         }
     }
 }

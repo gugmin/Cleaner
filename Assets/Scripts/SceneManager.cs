@@ -19,19 +19,16 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void EazySceneLoad()
     {
-        SceneManager.LoadScene("MainScene");
-        Debug.Log("EasyScene");
+        SceneManager.LoadScene("GugminScene");
     }
 
     public void NormalSceneLoad()
     {
         SceneManager.LoadScene("Lsc_NormalScene");
-        Debug.Log("NormalScene");
     }
 
     public void HardSceneLoad()
     {
         SceneManager.LoadScene("Lsc_HardScene");
-        Debug.Log("HardScene");
     }
 }

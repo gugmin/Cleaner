@@ -1,42 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class BallControl : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     private InputEvent controller;
-    private Rigidbody2D ballRigidbody;
-    public GameObject paddle;
-    public GameObject ball;
+    [SerializeField] private Rigidbody2D ballRigidbody;
     [SerializeField] private float speed;
-    Animator anim;
-
-    private Vector2 direction = Vector2.zero;
-    private Vector2 initPos;
-    float mag;
+    private PaddleControl paddle;
     bool isStart = false;
-
+    float mag;
+    Animator anim;
     private void Awake()
     {
-        Instantiate(paddle);
         controller = GetComponent<InputEvent>();
-        ballRigidbody = GetComponent<Rigidbody2D>();
-        ResetPos();
+        controller.OnClickEvent += Click;
+        paddle = GameManager.I.getPaddle();
     }
-
-
     void Start()
     {
-        ReSpawn();
     }
-
     private void FixedUpdate()
     {
         if (!isStart)
         {
-            transform.position = paddle.transform.position + new Vector3(0, 0.5f, 0);
+            transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.5f, 0);
         }
         //MoveBall(direction);
         mag = ballRigidbody.velocity.magnitude;
@@ -48,16 +36,6 @@ public class BallControl : MonoBehaviour
             ballRigidbody.AddForce(dir * speed);
         }
     }
-    public void ReSpawn()
-    {
-        GameObject newBall = Instantiate(ball);
-        newBall.transform.parent = GameObject.Find("Balls").transform;
-        controller.OnClickEvent += Click;
-        transform.position = initPos;
-        ballRigidbody.velocity = Vector2.zero;
-        //ball.SetActive(true);
-    }
-
     private void Click()
     {
         if (!isStart)
@@ -68,16 +46,15 @@ public class BallControl : MonoBehaviour
     {
         isStart = false;
         ballRigidbody.velocity = Vector2.zero;
-        transform.position = paddle.transform.position + new Vector3(0, 0.5f, 0);
+        transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.5f, 0);
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ï¿½Ðµé¿¡ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ?¬Ö? ?¥å??????
         if (collision.collider.CompareTag("Paddle"))
         {
             ballRigidbody.velocity = Vector2.zero;
-            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ï¿½ï¿½ - ï¿½Ðµï¿½ : ï¿½Ðµï¿½->ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ?? - ?¬Ö? : ?¬Ö?->?? ????
         }
         else if (collision.collider.CompareTag("BottomWall"))
         {
@@ -85,9 +62,9 @@ public class BallControl : MonoBehaviour
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
-            anim.SetBool("IsDead", true);
+            //anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(ball, 0.2f);
+            Destroy(gameObject);
             //ball.SetActive(false);
         }
     }

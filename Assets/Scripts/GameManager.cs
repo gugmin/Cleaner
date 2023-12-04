@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
     [SerializeField] private PaddleControl paddle;
-    [SerializeField] private BallControl ball;
+    [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (isDead == true)
         {
             isDead = false;
-            ball.ReSpawn();
+            ball.Invoke("ReSpawn", 1.0f);
         }
         else if (life == 0)
         {
@@ -112,21 +112,19 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1.0f;
     }
-    public void RetryGame() //�ٽ��ϱ�
+    public void RetryGame()
     {
         pausePanel.SetActive(false);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(scene.name);
     }
-    public void GoHomeBtn()  //����ȭ������ ���ư���
+    public void GoHomeBtn()
     {
-        //���� �ǳ� �㶧 �ð� ��������� �ٽ� ������
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("StartScene");
     }
     public IEnumerator StartRound()
     {
-        //TODO: ����, ��� �� �ʱ�ȭ�� ���� �ʱ�ȭ�ϱ�
 
         time = maxTime;
         cm.StartRound();
@@ -139,18 +137,20 @@ public class GameManager : MonoBehaviour
     public IEnumerator RoundClear()
     {
         currentRound++;
-        //TODO:Ŭ���� UI �߰�
         Time.timeScale = 0.0f;
-        //print("ȣ���");
         LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(10, 0, 0), 1).SetUpdate(true);
         yield return new WaitForSecondsRealtime(2.0f);
         cm.RoundClear();
         yield return new WaitForSecondsRealtime(2.0f);
         paddle.ResetPos();
-        ball.ResetPos();
+        ball.ReSpawn();
         brickmaker.MakeBrick();
         brickmaker.isClear = false;
         StartCoroutine(StartRound());
+    }
+    public PaddleControl getPaddle()
+    {
+        return paddle;
     }
 }

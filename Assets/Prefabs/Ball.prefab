@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2253547551073781081}
   - component: {fileID: 8632458448822294584}
   - component: {fileID: 5540790749830553740}
-  - component: {fileID: 3210764690123634069}
+  - component: {fileID: 5951955550062843167}
   - component: {fileID: 1057858061945121571}
   - component: {fileID: -3799667217605598325}
   m_Layer: 0
@@ -31,12 +31,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6405764405559594077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalPosition: {x: 0.4999999, y: -3.5, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1352678733417026823
 SpriteRenderer:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_DefaultActionMap: Paddle
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3210764690123634069
+--- !u!114 &5951955550062843167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,12 +191,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6405764405559594077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2e489eae5d18148a32017d6ba7632b, type: 3}
+  m_Script: {fileID: 11500000, guid: 73be29634474a564db0c89b1fc786c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 4245410472083938001, guid: 7dc1396bdb8dc154dad3c0688d7fe6a4, type: 3}
-  ball: {fileID: 6405764405559594077}
-  speed: 600
+  ballRigidbody: {fileID: 2253547551073781081}
+  speed: 300
 --- !u!114 &1057858061945121571
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour
         controller = GetComponent<InputEvent>();
         controller.OnClickEvent += Click;
         paddle = GameManager.I.getPaddle();
+        anim = gameObject.GetComponent<Animator>();
     }
     void Start()
     {
@@ -62,10 +63,9 @@ public class Ball : MonoBehaviour
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
-            //anim.SetBool("IsDead", true);
+            anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(gameObject);
-            //ball.SetActive(false);
+            Destroy(gameObject, 5f);
         }
     }
 }

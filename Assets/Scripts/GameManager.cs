@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (isDead == true)
         {
             isDead = false;
-            ball.Invoke("ReSpawn", 1.0f);
+            ball.Invoke("ReSpawn", 5f);
         }
         else if (life == 0)
         {

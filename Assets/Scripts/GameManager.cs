@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator StartRound()
     {
-
+        brickmaker.MakeEasyBrick(currentRound);
         time = maxTime;
         cm.StartRound();
         yield return new WaitForSecondsRealtime(2.0f);
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RoundClear()
     {
         currentRound++;
+        ball.DestroyAllChild();
         Time.timeScale = 0.0f;
         LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(10, 0, 0), 1).SetUpdate(true);
@@ -145,7 +146,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.0f);
         paddle.ResetPos();
         ball.ReSpawn();
-        brickmaker.MakeBrick();
         brickmaker.isClear = false;
         StartCoroutine(StartRound());
     }

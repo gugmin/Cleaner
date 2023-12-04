@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
         I = this;
         bgm = GetComponent<AudioSource>();
         BgmSoundRandomPlay();
+        volumeSlider.value = DataManager.I.LoadVolumeData();
     }
     void Update()
     {
@@ -40,6 +41,7 @@ public class SoundManager : MonoBehaviour
     }
     public void HideVolumeSettingUI()
     {
+        DataManager.I.SaveVolumeData(volumeSlider.value);
         volumeSetUI.SetActive(false);
     }
     public void PlayBallSound()

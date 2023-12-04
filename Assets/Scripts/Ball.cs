@@ -10,13 +10,11 @@ public class Ball : MonoBehaviour
     private PaddleControl paddle;
     bool isStart = false;
     float mag;
-    Animator anim;
     private void Awake()
     {
         controller = GetComponent<InputEvent>();
         controller.OnClickEvent += Click;
         paddle = GameManager.I.getPaddle();
-        anim = gameObject.GetComponent<Animator>();
     }
     void Start()
     {
@@ -51,21 +49,24 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ?¬Ö? ?¥å??????
         if (collision.collider.CompareTag("Paddle"))
         {
             ballRigidbody.velocity = Vector2.zero;
-            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ?? - ?¬Ö? : ?¬Ö?->?? ????
+            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
         }
         else if (collision.collider.CompareTag("BottomWall"))
         {
-            isStart = false;
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
-            anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(gameObject, 5f);
+            Destroy(gameObject);
+        }
+        else if (collision.collider.CompareTag("Shield"))
+        {
+            ballRigidbody.velocity = Vector2.zero;
+            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
+            GameManager.I.Shield.SetActive(false);
         }
     }
 }

@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 124525419}
   m_Layer: 0
   m_Name: WallBottom
-  m_TagString: Wall
+  m_TagString: BottomWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2516,6 +2516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddle: {fileID: 1308293951}
+  ball: {fileID: 721787620}
   speed: 600
 --- !u!114 &721787627
 MonoBehaviour:
@@ -5919,15 +5920,23 @@ MonoBehaviour:
   ball: {fileID: 721787625}
   brickmaker: {fileID: 382388265}
   endPanel: {fileID: 1852408417}
-  timeTxt: {fileID: 1083715011}
   scoreTxt: {fileID: 1061982381}
   maxScoreText: {fileID: 485833854}
   thisScoreText: {fileID: 1061982381}
+  _ball: {fileID: 721787620}
+  life: 3
+  maxLife: 3
+  lifeSprite:
+  - {fileID: 666290209}
+  - {fileID: 978350296}
+  - {fileID: 2086349708}
+  score: 0
   TimeBar: {fileID: 1322533501}
   maxTime: 120
   time: 3000
   currentRound: 0
   maxScore: 0
+  isDead: 0
 --- !u!1 &2015572896
 GameObject:
   m_ObjectHideFlags: 0

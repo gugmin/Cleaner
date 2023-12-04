@@ -29,12 +29,12 @@ public class GameManager : MonoBehaviour
     public int maxLife;
     public SpriteRenderer[] lifeSprite;
     public int score;
+    public int maxScore;
     //jw
     [SerializeField] Image TimeBar;
     public float maxTime;
     public float time;
     public int currentRound;
-    public float maxScore;
     public bool isDead = false;
 
     Scene scene;

@@ -20,6 +20,7 @@ public class BallControl : MonoBehaviour
 
     private void Awake()
     {
+        Instantiate(paddle);
         controller = GetComponent<InputEvent>();
         ballRigidbody = GetComponent<Rigidbody2D>();
         ResetPos();
@@ -49,10 +50,12 @@ public class BallControl : MonoBehaviour
     }
     public void ReSpawn()
     {
+        GameObject newBall = Instantiate(ball);
+        newBall.transform.parent = GameObject.Find("Balls").transform;
         controller.OnClickEvent += Click;
         transform.position = initPos;
         ballRigidbody.velocity = Vector2.zero;
-        ball.SetActive(true);
+        //ball.SetActive(true);
     }
 
     private void Click()
@@ -82,9 +85,10 @@ public class BallControl : MonoBehaviour
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
-            //anim.SetBool("IsDead", true);
+            anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
-            ball.SetActive(false);
+            Destroy(ball, 0.2f);
+            //ball.SetActive(false);
         }
     }
 }

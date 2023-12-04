@@ -11,7 +11,6 @@ public class DataManager : MonoBehaviour
     }
     public void SaveVolumeData(float volume)
     {
-
         PlayerPrefs.SetFloat("Volume", volume);
     }
     public float LoadVolumeData()

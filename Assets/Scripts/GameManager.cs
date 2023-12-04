@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //
+        time -= Time.deltaTime;
         if(TimeBar != null)
         {
             TimeBar.fillAmount = time / maxTime;

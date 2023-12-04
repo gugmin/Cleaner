@@ -768,6 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 4565149374827867480, guid: 637f98216d817ff449522ce4bb3d4cf6, type: 3}
+  isClear: 0
 --- !u!1 &385844186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,12 +3669,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ae131c2985b5749b3c207378bac296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballControl: {fileID: 721787625}
+  cm: {fileID: 0}
+  pausePanel: {fileID: 0}
+  rtan: {fileID: 0}
+  LeftUI: {fileID: 0}
+  RightUI: {fileID: 0}
+  paddle: {fileID: 0}
+  ball: {fileID: 721787625}
+  brickmaker: {fileID: 0}
   endPanel: {fileID: 1852408417}
   scoreTxt: {fileID: 1083715011}
   maxScoreText: {fileID: 485833854}
   thisScoreText: {fileID: 1061982381}
-  ball: {fileID: 721787620}
+  _ball: {fileID: 0}
   life: 3
   maxLife: 3
   lifeSprite:
@@ -3681,6 +3689,10 @@ MonoBehaviour:
   - {fileID: 978350296}
   - {fileID: 2086349708}
   score: 0
+  TimeBar: {fileID: 0}
+  maxTime: 0
+  time: 0
+  currentRound: 0
   maxScore: 20
   isDead: 0
 --- !u!1 &2047717446

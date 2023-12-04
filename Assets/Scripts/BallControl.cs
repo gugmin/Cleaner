@@ -82,7 +82,7 @@ public class BallControl : MonoBehaviour
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
-            anim.SetBool("IsDead", true);
+            //anim.SetBool("IsDead", true);
             ballRigidbody.velocity = Vector2.zero;
             ball.SetActive(false);
         }

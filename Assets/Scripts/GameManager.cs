@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text maxScoreText;
     public TMP_Text thisScoreText;
     //gm
-    public GameObject ball;
+    public GameObject _ball;
     public int life;
     public int maxLife;
     public SpriteRenderer[] lifeSprite;
@@ -61,12 +61,12 @@ public class GameManager : MonoBehaviour
             rtan.GetComponent<RectTransform>().localPosition = new Vector3( TimeBar.fillAmount*(-70)+35, 0, 0);
         }
         //
-        scoreTxt.text = "���ھ� : " + score.ToString("");
+        scoreTxt.text = "스코어 : " + score.ToString("");
      
         if (isDead == true)
         {
             isDead = false;
-            ballControl.ReSpawn();
+            ball.ReSpawn();
         }
         else if (life == 0)
         {
@@ -94,11 +94,11 @@ public class GameManager : MonoBehaviour
         if (score > maxScore)
         {
             maxScore = score;
-            maxScoreText.text = "�ְ����� : " + score.ToString();
+            maxScoreText.text = "최고점수 : " + score.ToString();
         }
         else if (score < maxScore)
         {
-            thisScoreText.text = "�������� : " + score.ToString();
+            thisScoreText.text = "현재점수 : " + score.ToString();
         }
     }
     public void PauseGame()
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         currentRound++;
         //TODO:Ŭ���� UI �߰�
         Time.timeScale = 0.0f;
-        print("ȣ���");
+        //print("ȣ���");
         LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(10, 0, 0), 1).SetUpdate(true);
         yield return new WaitForSecondsRealtime(2.0f);

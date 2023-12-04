@@ -63,7 +63,7 @@ public class PaddleControl : MonoBehaviour
         if (isHaste == false)
         {
             SetSpeed(speed);
-            isPower = true;
+            isHaste = true;
         }
     }
 

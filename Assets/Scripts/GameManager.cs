@@ -6,21 +6,34 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
-    // °ÔÀÓ¸Å´ÏÀú ½Ì±ÛÅæ
+    // ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ ï¿½Ì±ï¿½ï¿½ï¿½
     public static GameManager I;
-    public BallControl ballControl;
+    [SerializeField] private CameraMove cm;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject rtan;
+    [SerializeField] private GameObject LeftUI;
+    [SerializeField] private GameObject RightUI;
+    [SerializeField] private PaddleControl paddle;
+    [SerializeField] private BallControl ball;
+    [SerializeField] private BrickMaker brickmaker;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
     public TMP_Text thisScoreText;
+    //gm
     public GameObject ball;
     public int life;
     public int maxLife;
     public SpriteRenderer[] lifeSprite;
     public int score;
+    //jw
+    [SerializeField] Image TimeBar;
+    public float maxTime;
+    public float time;
+    public int currentRound;
     public float maxScore;
     public bool isDead = false;
 
@@ -28,18 +41,27 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        I = this; //½Ì±ÛÅæ
+        I = this; //ï¿½Ì±ï¿½ï¿½ï¿½
+        scene = SceneManager.GetActiveScene();
+        Time.timeScale = 0.0f;
+        currentRound = 1;
     }
 
     void Start()
     {
-        Time.timeScale = 1.0f;
+        StartCoroutine(StartRound());
     }
 
     // Update is called once per frame
     void Update()
-    {
-        scoreTxt.text = "½ºÄÚ¾î : " + score.ToString("");
+    {   //
+        if(TimeBar != null)
+        {
+            TimeBar.fillAmount = time / maxTime;
+            rtan.GetComponent<RectTransform>().localPosition = new Vector3( TimeBar.fillAmount*(-70)+35, 0, 0);
+        }
+        //
+        scoreTxt.text = "ï¿½ï¿½ï¿½Ú¾ï¿½ : " + score.ToString("");
      
         if (isDead == true)
         {
@@ -63,7 +85,7 @@ public class GameManager : MonoBehaviour
             lifeSprite[i].color = new Color(1, 1, 1, 1);
         }
     }
-
+    
     private void GameEnd()
     {
         Time.timeScale = 0f;
@@ -72,23 +94,62 @@ public class GameManager : MonoBehaviour
         if (score > maxScore)
         {
             maxScore = score;
-            maxScoreText.text = "ÃÖ°íÁ¡¼ö : " + score.ToString();
+            maxScoreText.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ : " + score.ToString();
         }
         else if (score < maxScore)
         {
-            thisScoreText.text = "ÇöÀçÁ¡¼ö : " + score.ToString();
+            thisScoreText.text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + score.ToString();
         }
     }
-    public void RetryGame() //´Ù½ÃÇÏ±â
+    public void PauseGame()
     {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+    public void ContinueGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+    public void RetryGame() //ï¿½Ù½ï¿½ï¿½Ï±ï¿½
+    {
+        pausePanel.SetActive(false);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(scene.name);
     }
-
-    public void GoHomeBtn()  //½ÃÀÛÈ­¸éÀ¸·Î µ¹¾Æ°¡±â
+    public void GoHomeBtn()  //ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½
     {
-        //¿£µå ÆÇ³Ú ¶ã¶§ ½Ã°£ ¸ØÃç³õÀº°Å ´Ù½Ã µ¹¸®±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³ï¿½ ï¿½ã¶§ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("StartScene");
+    }
+    public IEnumerator StartRound()
+    {
+        //TODO: ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ï±ï¿½
+
+        time = maxTime;
+        cm.StartRound();
+        yield return new WaitForSecondsRealtime(2.0f);
+        LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        Time.timeScale = 1.0f;
+    }
+    public IEnumerator RoundClear()
+    {
+        currentRound++;
+        //TODO:Å¬ï¿½ï¿½ï¿½ï¿½ UI ï¿½ß°ï¿½
+        Time.timeScale = 0.0f;
+        print("È£ï¿½ï¿½ï¿½");
+        LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
+        RightUI.transform.DOMove(new Vector3(10, 0, 0), 1).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(2.0f);
+        cm.RoundClear();
+        yield return new WaitForSecondsRealtime(2.0f);
+        paddle.ResetPos();
+        ball.ResetPos();
+        brickmaker.MakeBrick();
+        brickmaker.isClear = false;
+        StartCoroutine(StartRound());
     }
 }

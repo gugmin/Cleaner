@@ -22,9 +22,7 @@ public class BallControl : MonoBehaviour
     {
         controller = GetComponent<InputEvent>();
         ballRigidbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        initPos.x = paddle.transform.position.x;
-        initPos.y = paddle.transform.position.y + 0.5f;
+        ResetPos();
     }
 
 
@@ -63,14 +61,20 @@ public class BallControl : MonoBehaviour
             ballRigidbody.AddForce(Vector2.up * speed);
         isStart = true;
     }
+    public void ResetPos()
+    {
+        isStart = false;
+        ballRigidbody.velocity = Vector2.zero;
+        transform.position = paddle.transform.position + new Vector3(0, 0.5f, 0);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ÆÐµé¿¡ ºÎµúÈú°æ¿ì
+        // ï¿½Ðµé¿¡ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (collision.collider.CompareTag("Paddle"))
         {
             ballRigidbody.velocity = Vector2.zero;
-            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // °ø - ÆÐµé : ÆÐµé->°ø º¤ÅÍ
+            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ï¿½ï¿½ - ï¿½Ðµï¿½ : ï¿½Ðµï¿½->ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else if (collision.collider.CompareTag("BottomWall"))
         {

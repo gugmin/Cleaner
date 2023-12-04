@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rtan;
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
+    [SerializeField] private PaddleControl paddle;
+    [SerializeField] private BallControl ball;
+    [SerializeField] private BrickMaker brickmaker;
     public GameObject endPanel;
     public TMP_Text timeTxt;
     public TMP_Text scoreTxt;
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float maxTime;
     public float time;
     float score;
+    public int currentRound;
     public float maxScore;
 
     Scene scene;
@@ -34,12 +38,12 @@ public class GameManager : MonoBehaviour
         I = this; //싱글톤
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
+        currentRound = 1;
     }
 
     void Start()
     {
         StartCoroutine(StartRound());
-        time = maxTime;
     }
 
     // Update is called once per frame
@@ -103,6 +107,9 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator StartRound()
     {
+        //TODO: 점수, 목숨 등 초기화할 정보 초기화하기
+
+        time = maxTime;
         cm.StartRound();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
@@ -112,12 +119,19 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator RoundClear()
     {
+        currentRound++;
         //TODO:클리어 UI 추가
         Time.timeScale = 0.0f;
-        LeftUI.transform.DOMove(new Vector3(-90, 0, 0), 1).SetUpdate(true);
-        RightUI.transform.DOMove(new Vector3(90, 0, 0), 1).SetUpdate(true);
+        print("호출됨");
+        LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
+        RightUI.transform.DOMove(new Vector3(10, 0, 0), 1).SetUpdate(true);
         yield return new WaitForSecondsRealtime(2.0f);
         cm.RoundClear();
         yield return new WaitForSecondsRealtime(2.0f);
+        paddle.ResetPos();
+        ball.ResetPos();
+        brickmaker.MakeBrick();
+        brickmaker.isClear = false;
+        StartCoroutine(StartRound());
     }
 }

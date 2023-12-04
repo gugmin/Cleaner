@@ -52,7 +52,7 @@ public class BallControl : MonoBehaviour
             ballRigidbody.AddForce(Vector2.up * speed);
         isStart = true;
     }
-    private void ResetPos()
+    public void ResetPos()
     {
         isStart = false;
         ballRigidbody.velocity = Vector2.zero;

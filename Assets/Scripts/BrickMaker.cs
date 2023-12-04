@@ -8,7 +8,7 @@ public class BrickMaker : MonoBehaviour
     //[SerializeField] private int totalBrickCnt = 35;
 
     public GameObject brick;
-    bool isClear = false;
+    public bool isClear = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class BrickMaker : MonoBehaviour
         }
     }
 
-    void MakeBrick()
+    public void MakeBrick()
     {
         for (int i = 0; i < 25; i++)
         {

@@ -42,4 +42,8 @@ public class PaddleControl : MonoBehaviour
         dir = dir * speed;
         paddleRigidbody.velocity = dir;
     }
+    public void ResetPos()
+    {
+        transform.position = new Vector3(0, -4, 0);
+    }
 }

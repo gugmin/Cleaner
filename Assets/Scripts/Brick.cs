@@ -16,12 +16,14 @@ public class Brick : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ball")
         {
+
             int rand = Random.RandomRange(0, 100);
             if(rand < 100)
             {
                 controller.CallItemEvent(transform.position);
             }
 
+            GameManager.I.score++;
             Destroy(gameObject);
             // 공과 벽돌이 만났을 때 공이 다시 튕겨나오게 해야하는데 hmmhmm.. 여기서 구현해야하는가 Ball 에서 구현해야하는가 ?
         }

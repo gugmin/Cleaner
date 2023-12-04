@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Item.prefab.meta
 guid: 0ec45feb9132786459ce802bd05110a8
 PrefabImporter:
+========
+guid: a57d24fc3efa6f24c9890c4524e9b7e5
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> gugminTest1:Assets/Animation.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

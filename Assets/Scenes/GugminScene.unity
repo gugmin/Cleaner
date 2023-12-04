@@ -2174,6 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 4565149374827867480, guid: 637f98216d817ff449522ce4bb3d4cf6, type: 3}
+  isClear: 0
 --- !u!4 &773195307
 Transform:
   m_ObjectHideFlags: 0
@@ -3070,7 +3071,7 @@ SpriteRenderer:
   m_Size: {x: 1.64, y: 1.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1142858450
@@ -3186,7 +3187,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1186648504
@@ -4497,7 +4498,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1624833685
@@ -4529,13 +4530,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ae131c2985b5749b3c207378bac296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cm: {fileID: 1431266099}
+  pausePanel: {fileID: 756041050}
+  rtan: {fileID: 1102936714}
+  LeftUI: {fileID: 2083339695}
+  RightUI: {fileID: 979215971}
+  paddle: {fileID: 1350142912}
+  ball: {fileID: 1658587934}
+  brickmaker: {fileID: 773195306}
   endPanel: {fileID: 1071428705}
-  timeTxt: {fileID: 0}
   scoreTxt: {fileID: 1651104688}
   maxScoreText: {fileID: 1826670812}
   thisScoreText: {fileID: 1651104688}
-  time: 3000
+  _ball: {fileID: 6405764405559594077, guid: 5726a3133b629e340ba61c322a5b86bc, type: 3}
+  life: 3
+  maxLife: 3
+  lifeSprite:
+  - {fileID: 1903665024}
+  - {fileID: 1087286665}
+  - {fileID: 105774907}
+  score: 0
   maxScore: 0
+  TimeBar: {fileID: 2053726017}
+  maxTime: 120
+  time: 3000
+  currentRound: 0
+  isDead: 0
 --- !u!4 &1624833687
 Transform:
   m_ObjectHideFlags: 0
@@ -4767,8 +4787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2e489eae5d18148a32017d6ba7632b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 0}
-  speed: 0
+  ball: {fileID: 5951955550062843167, guid: 5726a3133b629e340ba61c322a5b86bc, type: 3}
 --- !u!1 &1689704184
 GameObject:
   m_ObjectHideFlags: 0
@@ -6194,7 +6213,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a36ea04d2232564d88074da1d9bc9d5, type: 3}
   - {fileID: 8300000, guid: bdbd11495a0f2a6428808b688c5f1af7, type: 3}
   - {fileID: 8300000, guid: 1c78215ffa783bf48aaa6663e6944afe, type: 3}
-  bgm: {fileID: 0}
 --- !u!4 &2088965828
 Transform:
   m_ObjectHideFlags: 0

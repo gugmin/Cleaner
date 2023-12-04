@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
             Destroy(transform.gameObject);
         }
 
-        else if (collision.CompareTag("WallBottom"))
+        else if (collision.CompareTag("BottomWall"))
         {
             Destroy(transform.gameObject);
         }

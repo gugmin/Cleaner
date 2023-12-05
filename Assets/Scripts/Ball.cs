@@ -83,6 +83,10 @@ public class Ball : MonoBehaviour
         ballRigidbody.velocity = Vector2.zero;
         transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.8f, 0);
     }
+    public ParticleSystem getParticle()
+    {
+        return ps;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("BottomWall"))

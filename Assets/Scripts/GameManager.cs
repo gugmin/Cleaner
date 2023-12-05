@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rtan;
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
-    [SerializeField] private SpriteRenderer angel;
+    [SerializeField] private GameObject angel;
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
@@ -194,13 +194,23 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         angel.transform.position = ball.transform.position + new Vector3(0, 0.2f, 0);
-        Color c = angel.color;
+        Color c = angel.GetComponent<SpriteRenderer>().color;
         while (c.a < 1)
         {
-            c.a += Time.deltaTime * 2;
-            angel.color = c;
-            yield return new WaitForSeconds(Time.deltaTime);
+            c.a += Time.unscaledDeltaTime/2;
+            angel.GetComponent<SpriteRenderer>().color = c;
+            yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
         }
+        ball.GetComponent<Ball>().getParticle().Stop();
+        ball.GetComponent<Collider2D>().enabled = false;
+        ball.transform.DOMove(paddle.gameObject.transform.position + new Vector3(0, 0.5f, 0), 2).SetUpdate(true);
+        angel.transform.DOMove(paddle.gameObject.transform.position + new Vector3(0, 0.8f, 0), 2).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(2.0f);
+        ball.GetComponent<Ball>().SetIsStart(false);
+        Time.timeScale = 1.0f;
+        angel.SetActive(false);
+        ball.GetComponent<Collider2D>().enabled = true;
+        yield return null;
     }
     public PaddleControl GetPaddle()
     {

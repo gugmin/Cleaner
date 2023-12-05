@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     private PaddleControl paddle;
     private float speed { get; set; } = 300f;
     private float size { get; set; } = 0.2f;
+
+    private float damage { get; set; } = 0.1f;
     
 
     bool isStart = false;
@@ -43,6 +45,8 @@ public class Ball : MonoBehaviour
         }
         
     }
+
+    #region isStart Set
     public bool GetIsStart()
     {
         return isStart;
@@ -51,6 +55,9 @@ public class Ball : MonoBehaviour
     {
         this.isStart = type;
     }
+    #endregion
+
+    #region Speed GetSet
     public float GetSpeed()
     {
         return speed;
@@ -61,15 +68,24 @@ public class Ball : MonoBehaviour
         if (this.speed > 600) this.speed = 600;
         if (this.speed < 150) this.speed = 150;
     }
+    #endregion
 
-
-    
-
+    #region Size Set
     public void SetSize(float size)
     {
         transform.localScale = new Vector3(size, size, 0);
     }
+    #endregion
 
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
 
     private void Click()
     {
@@ -85,6 +101,7 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.collider.CompareTag("BottomWall"))
         {
             SoundManager.I.PlayDieSound();

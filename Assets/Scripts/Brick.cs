@@ -14,7 +14,7 @@ public class Brick : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Amulet")) plusAmulet += 10;
+        if (PlayerPrefs.HasKey("Amulet")) plusAmulet = 10;
     }
 
     // Brick 이 Ball 과 만나서 파괴될 때의 함수 ( tag 를 사용한다는 가정 하에 )

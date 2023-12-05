@@ -48,7 +48,13 @@ public class Item : MonoBehaviour
 
                 // 공 데미지 강화
                 case "Item_Steel":
-                    
+                    for (int i = 0; i < ballParent.transform.childCount; i++)
+                    {
+                        Ball newball = ballParent.transform.GetChild(i).GetComponent<Ball>();
+                        newball.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Item/SteelBall");
+                        float damage = newball.GetDamage();
+                        newball.SetDamage(damage * 2);
+                    }
                     break;
 
                 // 공 크기 증가

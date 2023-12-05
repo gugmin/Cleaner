@@ -13,6 +13,8 @@ public class PaddleControl : MonoBehaviour
     [SerializeField] private float size { get; set; } = 1f;
     private bool isHaste = false;
     private bool isPower = false;
+    private bool isSand = true;
+
 
 
     private void Awake()
@@ -23,7 +25,7 @@ public class PaddleControl : MonoBehaviour
 
     private void Start()
     {
-        
+
         controller.OnMoveEvent += Move;
     }
 
@@ -60,7 +62,13 @@ public class PaddleControl : MonoBehaviour
     }
     public void IsHaste(float speed)
     {
-        if (isHaste == false)
+
+        if (PlayerPrefs.HasKey("Sand") && isSand)
+        {
+            SetSpeed(speed);
+            isSand = false;
+        }
+        else if (isHaste == false)
         {
             SetSpeed(speed);
             isHaste = true;

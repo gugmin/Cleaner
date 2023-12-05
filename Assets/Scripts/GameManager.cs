@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
-    public GameObject Shield;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
@@ -32,6 +31,8 @@ public class GameManager : MonoBehaviour
     public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
     public int score;
     public int maxScore;
+    //item
+    public GameObject Shield;
     //jw
     [SerializeField] Image TimeBar;
     public float maxTime;
@@ -85,7 +86,6 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.HasKey(shopItem[i]))
             {
                 eqitem[0].sprite = Resources.Load<Sprite>("ShopItem/" + shopItem[i]); // 이미지 교체
-                //PlayerPrefs.DeleteKey(shopItem[i]);
                 break;
             }
         }
@@ -97,7 +97,14 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        //PlayerPrefs.SetString(shopItem[i], shopItem[i]);
+    }
+
+    public void UseShield()
+    {
+        if (PlayerPrefs.HasKey("Shield"))
+        {
+            Shield.SetActive(true);
+        }
     }
 
     public void LostLife()
@@ -152,6 +159,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartRound()
     {
         eqSprite();
+        UseShield();
         brickmaker.MakeEasyBrick(currentRound);
         time = maxTime;
         cm.StartRound();

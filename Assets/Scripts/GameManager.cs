@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using Microsoft.Win32.SafeHandles;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
     public int score;
     public int maxScore;
+    public int studyPoint;
     //item
     public GameObject Shield;
     //jw
@@ -49,6 +52,10 @@ public class GameManager : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
         currentRound = 1;
+        if (PlayerPrefs.HasKey(scene.name))
+        {
+            maxScore = PlayerPrefs.GetInt(scene.name);
+        }
     }
 
     void Start()
@@ -126,17 +133,20 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         endPanel.SetActive(true);
-
+        //최고점수 비교
         if (score > maxScore)
         {
             maxScore = score;
-            maxScoreText.text = "최고점수 : " + score.ToString();
         }
-        else if (score < maxScore)
-        {
-            thisScoreText.text = "현재점수 : " + score.ToString();
-        }
+        PlayerPrefs.SetInt(scene.name, maxScore);
+        maxScoreText.text = "최고 점수 : " + maxScore.ToString();
+        thisScoreText.text = "현재 점수 : " + score.ToString();
+
+        //남은시간 + 스코어 = 누적공부시간
+        //studyPoint = score + time;
     }
+    
+
     public void PauseGame()
     {
         Time.timeScale = 0f;

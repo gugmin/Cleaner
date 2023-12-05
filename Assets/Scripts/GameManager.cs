@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rtan;
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
+    [SerializeField] private SpriteRenderer angel;
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     public float time;
     public int currentRound;
     public bool isDead = false;
+    public bool isAngel = false;
 
     Scene scene;
 
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
         currentRound = 1;
+        if (PlayerPrefs.HasKey(shopItem[1])) isAngel = true;
     }
 
     void Start()
@@ -186,6 +189,18 @@ public class GameManager : MonoBehaviour
         brickmaker.isClear = false;
         StartCoroutine(StartRound());
         Items.DestroyAllChild();
+    }
+    public IEnumerator AngelRespawn(GameObject ball)
+    {
+        Time.timeScale = 0.0f;
+        angel.transform.position = ball.transform.position + new Vector3(0, 0.2f, 0);
+        Color c = angel.color;
+        while (c.a < 1)
+        {
+            c.a += Time.deltaTime * 2;
+            angel.color = c;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
     public PaddleControl GetPaddle()
     {

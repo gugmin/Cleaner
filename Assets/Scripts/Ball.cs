@@ -92,14 +92,21 @@ public class Ball : MonoBehaviour
 
             GameManager.I.GetBalls().ballCount--;
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(gameObject, 2f);
             if (GameManager.I.GetBalls().ballCount == 0)
             {
+                GameManager.I.GetItems().DestroyAllChild();
+                if (GameManager.I.isAngel && GameManager.I.life == 1)
+                {
+                    GameManager.I.GetBalls().ballCount++;
+                    GameManager.I.isAngel = false;
+                    StartCoroutine(GameManager.I.AngelRespawn(gameObject));
+                    return;
+                }
                 GameManager.I.isDead = true;
                 GameManager.I.life -= 1;
                 GameManager.I.LostLife();
-                GameManager.I.GetItems().DestroyAllChild();
             }
+            Destroy(gameObject, 2f);
         }
         else
         {

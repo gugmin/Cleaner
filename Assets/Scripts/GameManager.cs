@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public int life;
     public int maxLife;
     public SpriteRenderer[] lifeSprite;
+    public SpriteRenderer[] eqitem;
+    public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
     public int score;
     public int maxScore;
     //jw
@@ -74,6 +76,30 @@ public class GameManager : MonoBehaviour
             GameEnd();
         }
     }
+
+    public void eqSprite()
+    {
+        int i = 0;
+        for (i = 0; i < shopItem.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(shopItem[i]))
+            {
+                eqitem[0].sprite = Resources.Load<Sprite>("ShopItem/" + shopItem[i]); // 이미지 교체
+                //PlayerPrefs.DeleteKey(shopItem[i]);
+                break;
+            }
+        }
+        for (int j = 0; j < shopItem.Length; j++)
+        {
+            if (PlayerPrefs.HasKey(shopItem[j]) && (i != j))
+            {
+                eqitem[1].sprite = Resources.Load<Sprite>("ShopItem/" + shopItem[j]); // 이미지 교체
+                break;
+            }
+        }
+        //PlayerPrefs.SetString(shopItem[i], shopItem[i]);
+    }
+
     public void LostLife()
     {
         for (int i = 0; i < maxLife; i++)
@@ -125,6 +151,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator StartRound()
     {
+        eqSprite();
         brickmaker.MakeEasyBrick(currentRound);
         time = maxTime;
         cm.StartRound();

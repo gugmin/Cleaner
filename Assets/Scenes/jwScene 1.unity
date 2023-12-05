@@ -4786,6 +4786,9 @@ MonoBehaviour:
   - {fileID: 1903665024}
   - {fileID: 1087286665}
   - {fileID: 105774907}
+  eqitem:
+  - {fileID: 1242716542}
+  - {fileID: 2139451808}
   score: 0
   maxScore: 0
   TimeBar: {fileID: 2053726017}

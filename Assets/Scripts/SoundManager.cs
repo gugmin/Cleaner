@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     [SerializeField] GameObject volumeSetUI;
     [SerializeField] private AudioClip[] music;
-    [SerializeField] private AudioClip ballSound;
+    [SerializeField] private AudioClip[] ballSound;
     private AudioSource bgm;
     private void Awake()
     {
@@ -46,6 +46,10 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayBallSound()
     {
-        bgm.PlayOneShot(ballSound);
+        bgm.PlayOneShot(ballSound[0]);
+    }
+    public void PlayDieSound()
+    {
+        bgm.PlayOneShot(ballSound[1]);
     }
 }

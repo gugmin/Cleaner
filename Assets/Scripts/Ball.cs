@@ -74,7 +74,7 @@ public class Ball : MonoBehaviour
                 ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
                 GameManager.I.Shield.SetActive(false);
             }
-
+            
         }
     }
 }

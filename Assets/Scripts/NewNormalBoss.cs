@@ -1,18 +1,39 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewNormalBoss : MonoBehaviour
 {
     float bossMovementX = 0.05f; // Boss 의 x 축 움직임
-    public int bossMaxHP = 10; // Boss 의 Max HP
-    int damageFromBall = 0; // 공의 공격력
+    //public int bossMaxHP = 10; // Boss 의 Max HP
 
     public NewNormalBossBrickMaker nbBrickMaker;
 
+    private GameObject ballParent;
+    private GameObject brickParent;
+
+    [SerializeField] private Image hpBar;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1.0f;
+
+        ballParent = GameObject.Find("Balls");
+
+        for (int i = 0; i < ballParent.transform.childCount; i++)
+        {
+            SpriteRenderer newBall = ballParent.transform.GetChild(i).GetComponent<SpriteRenderer>();
+            newBall.sprite = Resources.Load<Sprite>("NormalBoss/handBall");
+        }
+
+        brickParent = GameObject.Find("Bricks");
+
+        for (int i = 0; i <  brickParent.transform.childCount; i++)
+        {
+            //brickParent 의 child  이미지들 변경시켜주기
+            SpriteRenderer newBrick = brickParent.transform.GetChild(i).GetComponent<SpriteRenderer>();
+            newBrick.sprite = Resources.Load<Sprite>("NormalBoss/wafersBricks");
+        }
     }
 
     // Update is called once per frame
@@ -38,17 +59,12 @@ public class NewNormalBoss : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball")) // boss 와 Ball 이 만나면 Boss 가 데미지 입음.
         {
-            damageFromBall += 1;
+            hpBar.fillAmount -= 0.05f;
 
-            // HPfront 컴포넌트 찾기
-            GameObject varOfHPfront = GameObject.Find("HPfront");
+            //TODO RandomBrickSpawn
+            nbBrickMaker.RandomBrickSpawn(hpBar.fillAmount);
 
-            varOfHPfront.transform.localScale = new Vector3(1 - ((float)damageFromBall / bossMaxHP), 1.0f, 1.0f); // 나눌 때 자료형 주의 !
-
-            // RandomBrickSpawn
-            nbBrickMaker.RandomBrickSpawn(bossMaxHP - damageFromBall);
-
-            if (damageFromBall >= bossMaxHP) // boss 가 죽었을 때 - 시간을 0 으로 세팅해서 HP bar 변화와 boss 움직임 일어나지 않도록 세팅.
+            if (hpBar.fillAmount <= 0.0f) // boss 가 죽었을 때 - 시간을 0 으로 세팅해서 HP bar 변화와 boss 움직임 일어나지 않도록 세팅.
             {
                 BossDead();
             }
@@ -70,5 +86,7 @@ public class NewNormalBoss : MonoBehaviour
 
 
     // TODO 특정 HP 마다 item 드랍하도록
+
+
 }
 

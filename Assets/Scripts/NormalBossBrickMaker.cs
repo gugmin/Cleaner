@@ -4,7 +4,7 @@ public class NormalBossBrickMaker : MonoBehaviour
 {
 
     public GameObject brick;
-
+    public ParticleSystem[] ps;
     public void RandomBrickSpawn(int bossMaxHP) // 매개변수로 boss 의 HP
     {
         if (bossMaxHP == 7)
@@ -24,6 +24,9 @@ public class NormalBossBrickMaker : MonoBehaviour
         }
         else if (bossMaxHP == 5)
         {
+            for (int i = 0; i < ps.Length; i++)
+                ps[i].Play();
+
             for (int i = 0; i < 5; i++)
             {
 

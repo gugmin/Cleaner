@@ -64,7 +64,8 @@ public class NormalBoss : MonoBehaviour
         gameObject.transform.Find("dead").gameObject.SetActive(true);
 
         // 시간 0 으로 설정.
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
+        GameManager.I.isStageClear = true;
     }
 
 

@@ -904,6 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 4565149374827867480, guid: 637f98216d817ff449522ce4bb3d4cf6, type: 3}
+  ps: []
 --- !u!1 &385844186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,8 +1841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2e489eae5d18148a32017d6ba7632b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 919387789}
-  speed: 300
+  ball: {fileID: 0}
 --- !u!114 &721787627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2420,8 +2420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e8a8158f0d0d849a4ff3a89bcad7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  size: 1.5
 --- !u!114 &919387796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,7 +3092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1269459014
 Transform:
   m_ObjectHideFlags: 0
@@ -3126,8 +3124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossMaxHP: 10
   nbBrickMaker: {fileID: 382388265}
-  bossAlive: {fileID: 131354924}
-  bossDead: {fileID: 638515008}
 --- !u!61 &1269459016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3160,7 +3156,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004504025, y: 1.5999694}
+  m_Offset: {x: -0.0045039654, y: 1.7730509}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3171,7 +3167,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4996786, y: 1.300704}
+  m_Size: {x: 3.4996786, y: 1.646867}
   m_EdgeRadius: 0
 --- !u!1 &1310096281
 GameObject:
@@ -3862,13 +3858,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ae131c2985b5749b3c207378bac296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cm: {fileID: 0}
+  pausePanel: {fileID: 0}
+  rtan: {fileID: 0}
+  LeftUI: {fileID: 0}
+  RightUI: {fileID: 0}
+  boss: {fileID: 0}
+  paddle: {fileID: 0}
+  ball: {fileID: 0}
+  brickmaker: {fileID: 0}
+  flash: {fileID: 0}
+  Shield: {fileID: 0}
   endPanel: {fileID: 1852408417}
-  timeTxt: {fileID: 1083715011}
   scoreTxt: {fileID: 1061982381}
   maxScoreText: {fileID: 485833854}
   thisScoreText: {fileID: 1061982381}
-  time: 3000
+  _ball: {fileID: 0}
+  life: 0
+  maxLife: 0
+  lifeSprite: []
+  score: 0
   maxScore: 0
+  TimeBar: {fileID: 0}
+  maxTime: 0
+  time: 3000
+  currentRound: 0
+  isDead: 0
+  isStageClear: 0
 --- !u!1 &2047717446
 GameObject:
   m_ObjectHideFlags: 0

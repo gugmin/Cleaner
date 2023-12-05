@@ -10,6 +10,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private SpriteRenderer Mirror;
     [SerializeField] private SpriteRenderer vport;
     public GameObject bricks;
+    bool firstPattern = false;
+    bool secondPattern = false;
+    bool thirdPattern = false;
 
     private void Start()
     {
@@ -20,7 +23,7 @@ public class Boss : MonoBehaviour
     {
         if(HpBar.fillAmount == 0)
         {
-            Time.timeScale = 0f;
+            GameManager.I.isStageClear = true;
             // 게임종료 시 엔드판넬 생성
         }
     }
@@ -48,8 +51,9 @@ public class Boss : MonoBehaviour
     private void Selectpattern()
     {
         float test = HpBar.fillAmount;
-        if (test > 0.8f)
+        if (test < 0.8f && !firstPattern)
         {
+            firstPattern = true;
             for (int i = 0; i < 8; i++)
             {
                 GameObject brick = Instantiate(bricks);
@@ -61,8 +65,9 @@ public class Boss : MonoBehaviour
                 brick.transform.position = new Vector3(x, y, 0);
             }
         }
-        else if (test > 0.5f)
+        else if (test < 0.5f && !secondPattern)
         {
+            secondPattern = true;
             for (int i = 0; i < 10; i++)
             { 
                 vport.enabled = true;
@@ -73,8 +78,9 @@ public class Boss : MonoBehaviour
                 brick.transform.position = new Vector3(x, y, 0);
             }
         }
-        else if (test > 0.2f)
+        else if (test < 0.2f && !thirdPattern)
         {
+            thirdPattern = true;
             for (int i = 0; i < 8; i++)
             {
                 GameObject brick = Instantiate(bricks);

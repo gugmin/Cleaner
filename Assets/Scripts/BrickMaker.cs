@@ -9,6 +9,7 @@ public class BrickMaker : MonoBehaviour
 
     public GameObject brick;
     public bool isClear = false;
+    public bool isBoss = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class BrickMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.childCount == 0&&!isClear)
+        if (transform.childCount == 0&&!isClear && !isBoss)
         {
             isClear = true;
             StartCoroutine(GameManager.I.RoundClear());
@@ -53,15 +54,6 @@ public class BrickMaker : MonoBehaviour
                 }
                 break;
             default:
-                for (int i = 0; i < 25; i++)
-                {
-                    GameObject newBrick = Instantiate(brick);
-                    newBrick.transform.parent = GameObject.Find("Bricks").transform;
-
-                    float x = (i % 5) * 1.2f - 2.4f;
-                    float y = (i / 5) * 0.5f;
-                    newBrick.transform.position = new Vector3(x, y, 0);
-                }
                 break;
 
         }

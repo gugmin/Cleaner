@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rtan;
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
+    [SerializeField] private GameObject boss;
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
+    [SerializeField] private SpriteRenderer flash;
     public GameObject Shield;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
     public float time;
     public int currentRound;
     public bool isDead = false;
-
+    public bool isStageClear = false;
     Scene scene;
 
     private void Awake()
@@ -63,7 +65,9 @@ public class GameManager : MonoBehaviour
         }
         //
         scoreTxt.text = "스코어 : " + score.ToString("");
-     
+        if (isStageClear)
+            GameEnd();
+
         if (isDead == true)
         {
             isDead = false;
@@ -126,12 +130,38 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartRound()
     {
         brickmaker.MakeEasyBrick(currentRound);
-        time = maxTime;
+        //time = maxTime;
         cm.StartRound();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         yield return new WaitForSecondsRealtime(1.0f);
+        Time.timeScale = 1.0f;
+    }
+    public IEnumerator StartEasyBossRound()
+    {
+        cm.StartRound();
+        brickmaker.isBoss = true;
+        yield return new WaitForSecondsRealtime(2.0f);
+        LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        Color c = flash.color;
+        while (c.a < 1)
+        {
+            c.a += 0.03f;
+            flash.color = c;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        boss.SetActive(true);
+
+        while (c.a > 0)
+        {
+            c.a -= 0.03f;
+            flash.color = c;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
         Time.timeScale = 1.0f;
     }
     public IEnumerator RoundClear()
@@ -147,7 +177,10 @@ public class GameManager : MonoBehaviour
         paddle.ResetPos();
         ball.ReSpawn();
         brickmaker.isClear = false;
-        StartCoroutine(StartRound());
+        if (currentRound >= 3)
+            StartCoroutine(StartEasyBossRound());
+        else
+            StartCoroutine(StartRound());
     }
     public PaddleControl getPaddle()
     {

@@ -5035,5 +5035,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballRigidbody: {fileID: 1062308032347633808}
-  speed: 300
   ps: {fileID: 4850575178585639154}

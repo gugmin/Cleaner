@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
+    [SerializeField] private ItemMaker Items;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void LostLife()
     {
+        
         for (int i = 0; i < maxLife; i++)
         {
             lifeSprite[i].color = new Color(1, 1, 1, 0.5f);
@@ -183,9 +185,19 @@ public class GameManager : MonoBehaviour
         ball.ReSpawn();
         brickmaker.isClear = false;
         StartCoroutine(StartRound());
+        Items.DestroyAllChild();
     }
-    public PaddleControl getPaddle()
+    public PaddleControl GetPaddle()
     {
         return paddle;
+    }
+
+    public BallMaker GetBalls()
+    {
+        return ball;
+    }
+    public ItemMaker GetItems()
+    {
+        return Items;
     }
 }

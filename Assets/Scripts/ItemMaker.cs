@@ -12,12 +12,12 @@ public class ItemMaker: MonoBehaviour
     enum ItemName
     {
         Item_Print = 0,
-        Item_Steel,
-        Item_Zoom,
-        Item_Power,
-        Item_Fire,
-        Item_Glue,
-        Item_Haste
+        Item_Steel = 1,
+        Item_Zoom = 2,
+        Item_Power = 3,
+        Item_Fire = 4,
+        Item_Glue = 5,
+        Item_Haste = 6
     }
     #endregion
 
@@ -38,10 +38,8 @@ public class ItemMaker: MonoBehaviour
 
     private void ItemMake(Vector2 position)
     {
-        print("¹¹°¡ ¹®Á¨µ¥");
-
         int rand = Random.Range(0, 7);
-        //int rand = 0;
+        //int rand = 2;
 
         GameObject newItem = Instantiate(item);
         newItem.transform.position = position;
@@ -54,7 +52,17 @@ public class ItemMaker: MonoBehaviour
         newItem.transform.parent = GameObject.Find("Items").transform;
     }
 
+    public void DestroyAllChild()
+    {
+        Transform[] children = GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            if (child.name == transform.name)
+                continue;
 
+            Destroy(child.gameObject);
+        }
+    }
 
 
 }

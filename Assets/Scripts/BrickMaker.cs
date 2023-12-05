@@ -12,7 +12,6 @@ public class BrickMaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MakeBrick();
     }
 
     // Update is called once per frame
@@ -25,16 +24,46 @@ public class BrickMaker : MonoBehaviour
         }
     }
 
-    public void MakeBrick()
+    public void MakeEasyBrick(int round)
     {
-        for (int i = 0; i < 25; i++)
+        switch (round)
         {
-            GameObject newBrick = Instantiate(brick);
-            newBrick.transform.parent = GameObject.Find("Bricks").transform;
+            case 1:
+                for (int i = 0; i < 25; i++)
+                {
+                    if (i % 2 == 1)
+                        continue;
+                    GameObject newBrick = Instantiate(brick);
+                    newBrick.transform.parent = GameObject.Find("Bricks").transform;
 
-            float x = (i % 5) * 1.2f - 2.4f;
-            float y = (i / 5) * 0.5f;
-            newBrick.transform.position = new Vector3(x, y, 0);
+                    float x = (i % 5) * 1.2f - 2.4f;
+                    float y = (i / 5) * 0.5f;
+                    newBrick.transform.position = new Vector3(x, y, 0);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 25; i++)
+                {
+                    GameObject newBrick = Instantiate(brick);
+                    newBrick.transform.parent = GameObject.Find("Bricks").transform;
+
+                    float x = (i % 5) * 1.2f - 2.4f;
+                    float y = (i / 5) * 0.5f;
+                    newBrick.transform.position = new Vector3(x, y, 0);
+                }
+                break;
+            default:
+                for (int i = 0; i < 25; i++)
+                {
+                    GameObject newBrick = Instantiate(brick);
+                    newBrick.transform.parent = GameObject.Find("Bricks").transform;
+
+                    float x = (i % 5) * 1.2f - 2.4f;
+                    float y = (i / 5) * 0.5f;
+                    newBrick.transform.position = new Vector3(x, y, 0);
+                }
+                break;
+
         }
     }
 }

@@ -20,4 +20,15 @@ public class BallMaker : MonoBehaviour
         newBall.ResetPos();
         newBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
+        public void DestroyAllChild()
+    {
+        Transform[] children = GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            if (child.name == transform.name)
+                continue;
+
+            Destroy(child.gameObject);
+        }
+    }
 }

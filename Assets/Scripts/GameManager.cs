@@ -9,7 +9,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
-    // ���ӸŴ��� �̱���
     public static GameManager I;
     [SerializeField] private CameraMove cm;
     [SerializeField] private GameObject pausePanel;
@@ -19,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
+    public GameObject Shield;
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        I = this; //�̱���
+        I = this;
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
         currentRound = 1;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (isDead == true)
         {
             isDead = false;
-            ball.Invoke("ReSpawn", 1.0f);
+            ball.Invoke("ReSpawn", 2f);
         }
         else if (life == 0)
         {

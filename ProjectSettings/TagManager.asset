@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - Paddle
   - BottomWall
+  - Shield
   layers:
   - Default
   - TransparentFX

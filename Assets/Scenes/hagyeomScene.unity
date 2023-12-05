@@ -2237,6 +2237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 4650151341721274430, guid: 547a884a02a4d584f9bc31d0620256ef, type: 3}
+  ballCount: 0
 --- !u!4 &770876871
 Transform:
   m_ObjectHideFlags: 0
@@ -4644,6 +4645,8 @@ MonoBehaviour:
   paddle: {fileID: 1350142912}
   ball: {fileID: 770876870}
   brickmaker: {fileID: 773195306}
+  Items: {fileID: 271812051}
+  Shield: {fileID: 0}
   endPanel: {fileID: 1071428705}
   scoreTxt: {fileID: 1651104688}
   maxScoreText: {fileID: 1826670812}
@@ -6274,6 +6277,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a36ea04d2232564d88074da1d9bc9d5, type: 3}
   - {fileID: 8300000, guid: bdbd11495a0f2a6428808b688c5f1af7, type: 3}
   - {fileID: 8300000, guid: 1c78215ffa783bf48aaa6663e6944afe, type: 3}
+  ballSound:
+  - {fileID: 8300000, guid: 32bb56967e1c8ab4293f5b031a309378, type: 3}
+  - {fileID: 8300000, guid: 8a5895aa26039e540a302a8c9afa7d07, type: 3}
 --- !u!4 &2088965828
 Transform:
   m_ObjectHideFlags: 0

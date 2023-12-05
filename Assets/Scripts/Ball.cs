@@ -6,36 +6,59 @@ public class Ball : MonoBehaviour
 {
     private InputEvent controller;
     [SerializeField] private Rigidbody2D ballRigidbody;
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
     [SerializeField] ParticleSystem ps;
     private PaddleControl paddle;
+    private float speed { get; set; } = 300f;
+    private float size {  get; set; }
+    
+
     bool isStart = false;
     float mag;
     private void Awake()
     {
         controller = GetComponent<InputEvent>();
         controller.OnClickEvent += Click;
-        paddle = GameManager.I.getPaddle();
+        paddle = GameManager.I.GetPaddle();
     }
-    void Start()
-    {
-    }
+    
     private void FixedUpdate()
     {
         if (!isStart)
         {
             transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.5f, 0);
         }
-        //MoveBall(direction);
+        
         mag = ballRigidbody.velocity.magnitude;
-        //print(mag);
         if (mag < 4f || mag > 5f)
         {
             Vector2 dir = ballRigidbody.velocity.normalized;
             ballRigidbody.velocity = Vector2.zero;
             ballRigidbody.AddForce(dir * speed);
         }
+        
     }
+    public bool GetIsStart()
+    {
+        return isStart;
+    }
+    public void SetIsStart(bool type)
+    {
+        this.isStart = type;
+    }
+    public float GetSpeed()
+    {
+        return speed;
+    }
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+        if (this.speed > 600) this.speed = 600;
+        if (this.speed < 150) this.speed = 150;
+    }
+
+
+
     private void Click()
     {
         if (!isStart)
@@ -54,11 +77,17 @@ public class Ball : MonoBehaviour
         {
             SoundManager.I.PlayDieSound();
             ps.Play();
-            GameManager.I.isDead = true;
-            GameManager.I.life -= 1;
-            GameManager.I.LostLife();
+
+            GameManager.I.GetBalls().ballCount--;
             ballRigidbody.velocity = Vector2.zero;
             Destroy(gameObject, 2f);
+            if (GameManager.I.GetBalls().ballCount == 0)
+            {
+                GameManager.I.isDead = true;
+                GameManager.I.life -= 1;
+                GameManager.I.LostLife();
+                GameManager.I.GetItems().DestroyAllChild();
+            }
         }
         else
         {
@@ -66,7 +95,7 @@ public class Ball : MonoBehaviour
             if (collision.collider.CompareTag("Paddle"))
             {
                 ballRigidbody.velocity = Vector2.zero;
-                ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ?? - ?��? : ?��?->?? ????
+                ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);   
             }
             else if (collision.collider.CompareTag("Shield"))
             {

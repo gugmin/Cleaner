@@ -5037,6 +5037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballRigidbody: {fileID: 1062308032347633808}
   speed: 300
+  ps: {fileID: 4850575178585639154}
 --- !u!95 &3443992469580365815
 Animator:
   serializedVersion: 5
@@ -5058,4 +5059,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-  ps: {fileID: 4850575178585639154}

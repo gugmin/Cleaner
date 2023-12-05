@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     [SerializeField] ParticleSystem ps;
     private PaddleControl paddle;
     private float speed { get; set; } = 300f;
-    private float size {  get; set; }
+    private float size { get; set; } = 0.2f;
     
 
     bool isStart = false;
@@ -21,7 +21,12 @@ public class Ball : MonoBehaviour
         controller.OnClickEvent += Click;
         paddle = GameManager.I.GetPaddle();
     }
-    
+
+    private void Start()
+    {
+        SetSize(size);
+    }
+
     private void FixedUpdate()
     {
         if (!isStart)
@@ -57,6 +62,13 @@ public class Ball : MonoBehaviour
         if (this.speed < 150) this.speed = 150;
     }
 
+
+    
+
+    public void SetSize(float size)
+    {
+        transform.localScale = new Vector3(size, size, 0);
+    }
 
 
     private void Click()

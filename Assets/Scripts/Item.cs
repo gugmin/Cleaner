@@ -53,7 +53,11 @@ public class Item : MonoBehaviour
 
                 // 공 크기 증가
                 case "Item_Zoom":
-                    
+                    for (int i = 0; i < ballParent.transform.childCount; i++)
+                    {
+                        Ball newball = ballParent.transform.GetChild(i).GetComponent<Ball>();
+                        newball.SetSize(0.4f);
+                    }
                     break;
 
                 // 패들 크기 증가

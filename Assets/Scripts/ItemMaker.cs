@@ -38,8 +38,8 @@ public class ItemMaker: MonoBehaviour
 
     private void ItemMake(Vector2 position)
     {
-        //int rand = Random.Range(0, 7);
-        int rand = 0;
+        int rand = Random.Range(0, 7);
+        //int rand = 2;
 
         GameObject newItem = Instantiate(item);
         newItem.transform.position = position;

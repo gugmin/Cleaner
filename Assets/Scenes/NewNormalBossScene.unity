@@ -7432,7 +7432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824036012}
   - component: {fileID: 824036011}
-  - component: {fileID: 824036010}
+  - component: {fileID: 824036013}
   m_Layer: 0
   m_Name: NormalBoss
   m_TagString: Untagged
@@ -7440,20 +7440,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &824036010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824036009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3be1f1adfbf544c9622ce835b45fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossMaxHP: 10
-  nbBrickMaker: {fileID: 2051041562}
 --- !u!61 &824036011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7517,6 +7503,20 @@ Transform:
   m_Father: {fileID: 663927883}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824036013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824036009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e6962c7adda1f4cb21cfd8d8df4e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossMaxHP: 10
+  nbBrickMaker: {fileID: 2051041562}
 --- !u!1 &856623795
 GameObject:
   m_ObjectHideFlags: 0
@@ -16751,7 +16751,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2051041560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7be54924fca0a8b459ac1c239819b9ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 28566cff7d1e5674a97d2a389093ef96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 4565149374827867480, guid: 637f98216d817ff449522ce4bb3d4cf6, type: 3}

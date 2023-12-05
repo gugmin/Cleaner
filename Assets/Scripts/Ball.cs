@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     private InputEvent controller;
     [SerializeField] private Rigidbody2D ballRigidbody;
     [SerializeField] private float speed;
+    [SerializeField] ParticleSystem ps;
     private PaddleControl paddle;
     bool isStart = false;
     float mag;
@@ -49,24 +50,31 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Paddle"))
+        if (collision.collider.CompareTag("BottomWall"))
         {
-            ballRigidbody.velocity = Vector2.zero;
-            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
-        }
-        else if (collision.collider.CompareTag("BottomWall"))
-        {
+            SoundManager.I.PlayDieSound();
+            ps.Play();
             GameManager.I.isDead = true;
             GameManager.I.life -= 1;
             GameManager.I.LostLife();
             ballRigidbody.velocity = Vector2.zero;
-            Destroy(gameObject);
+            Destroy(gameObject, 2f);
         }
-        else if (collision.collider.CompareTag("Shield"))
+        else
         {
-            ballRigidbody.velocity = Vector2.zero;
-            ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
-            GameManager.I.Shield.SetActive(false);
+            SoundManager.I.PlayBallSound();
+            if (collision.collider.CompareTag("Paddle"))
+            {
+                ballRigidbody.velocity = Vector2.zero;
+                ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed); // ?? - ?��? : ?��?->?? ????
+            }
+            else if (collision.collider.CompareTag("Shield"))
+            {
+                ballRigidbody.velocity = Vector2.zero;
+                ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
+                GameManager.I.Shield.SetActive(false);
+            }
+
         }
     }
 }

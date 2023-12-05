@@ -74,7 +74,7 @@ public class PaddleControl : MonoBehaviour
     }
     public void SetSize(float size)
     {
-        transform.localScale = new Vector3(size, 0.3f, 0);
+        transform.localScale = new Vector3(size, size, 0); //0.3f
     }
     public void IsPower(float size)
     {

@@ -4441,7 +4441,7 @@ MonoBehaviour:
   LeftUI: {fileID: 635014705}
   RightUI: {fileID: 1749076578}
   boss: {fileID: 232020519}
-  bossimg: {fileID: 232020519}
+  bossimg: {fileID: 644849942}
   paddle: {fileID: 1391352710}
   ball: {fileID: 156379097}
   brickmaker: {fileID: 1290749645}

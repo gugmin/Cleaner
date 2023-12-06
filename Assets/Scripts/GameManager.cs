@@ -220,6 +220,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator StartEasyBossRound()
     {
+        eqSprite();
         cm.StartRound();
         brickmaker.isBoss = true;
         paddle.SetInit();

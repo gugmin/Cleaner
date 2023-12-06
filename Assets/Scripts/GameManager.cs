@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
     {
         cm.StartRound();
         brickmaker.isBoss = true;
+        paddle.SetInit();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
@@ -208,8 +209,8 @@ public class GameManager : MonoBehaviour
         UseShield();
         brickmaker.MakeEasyBrick(currentRound);
         time = maxTime;
-        paddle.SetInit();
         cm.StartRound();
+        paddle.SetInit();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);

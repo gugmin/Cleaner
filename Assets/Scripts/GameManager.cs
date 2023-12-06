@@ -17,11 +17,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rtan;
     [SerializeField] private GameObject LeftUI;
     [SerializeField] private GameObject RightUI;
-    [SerializeField] private GameObject angel;
+
+    [SerializeField] private GameObject boss;
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
+    [SerializeField] private SpriteRenderer flash;
+
+    [SerializeField] private GameObject angel;   
     [SerializeField] private ItemMaker Items;
+
     public GameObject endPanel;
     public TMP_Text scoreTxt;
     public TMP_Text maxScoreText;
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour
     public float time;
     public int currentRound;
     public bool isDead = false;
+    public bool isStageClear = false;
     public bool isAngel = false;
 
     Scene scene;
@@ -198,8 +204,11 @@ public class GameManager : MonoBehaviour
         paddle.ResetPos();
         ball.ReSpawn();
         brickmaker.isClear = false;
-        StartCoroutine(StartRound());
-        Items.DestroyAllChild();
+        if (currentRound >= 3)
+            StartCoroutine(StartEasyBossRound());
+        else
+            StartCoroutine(StartRound());
+            Items.DestroyAllChild();
     }
     public IEnumerator AngelRespawn(GameObject ball)
     {

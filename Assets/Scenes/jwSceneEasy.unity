@@ -4774,6 +4774,8 @@ MonoBehaviour:
   paddle: {fileID: 1350142912}
   ball: {fileID: 1658587934}
   brickmaker: {fileID: 773195306}
+  flash: {fileID: 1772262542}
+  Shield: {fileID: 2103550926}
   Items: {fileID: 766646173}
   endPanel: {fileID: 1071428705}
   scoreTxt: {fileID: 584667046}

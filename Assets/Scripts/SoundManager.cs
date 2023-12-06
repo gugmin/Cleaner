@@ -52,4 +52,8 @@ public class SoundManager : MonoBehaviour
     {
         bgm.PlayOneShot(ballSound[1]);
     }
+    public void PlayAngelSound()
+    {
+        bgm.PlayOneShot(ballSound[2]);
+    }
 }

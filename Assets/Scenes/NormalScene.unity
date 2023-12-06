@@ -5989,8 +5989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.98999906, y: 0}
+  m_SizeDelta: {x: 7.019998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358288344
 MonoBehaviour:
@@ -15062,7 +15062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590351918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -10.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15186,12 +15186,13 @@ MonoBehaviour:
   studyPoint: 0
   Shield: {fileID: 2103550926}
   TimeBar: {fileID: 2053726017}
-  maxTime: 120
-  time: 120
+  maxTime: 180
+  time: 180
   currentRound: 0
   isDead: 0
   isStageClear: 0
   isAngel: 0
+  isGameOver: 0
 --- !u!4 &1624833687
 Transform:
   m_ObjectHideFlags: 0
@@ -15597,8 +15598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.15, y: 4.03}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 4.03}
+  m_SizeDelta: {x: 23.43, y: 6.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731871518
 MonoBehaviour:
@@ -17121,6 +17122,7 @@ MonoBehaviour:
   ballSound:
   - {fileID: 8300000, guid: 32bb56967e1c8ab4293f5b031a309378, type: 3}
   - {fileID: 8300000, guid: 8a5895aa26039e540a302a8c9afa7d07, type: 3}
+  - {fileID: 8300000, guid: 1eae3818811811841b0b66ba8231de5f, type: 3}
 --- !u!4 &2088965828
 Transform:
   m_ObjectHideFlags: 0

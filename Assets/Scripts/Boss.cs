@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour
     {
         if(HpBar.fillAmount == 0)
         {
+            PlayerPrefs.SetString("EasyBoss", "Clear");
             GameManager.I.isStageClear = true;
         }
     }
@@ -88,7 +89,7 @@ public class Boss : MonoBehaviour
         else if (test < 0.2f && !thirdPattern)
         {
             thirdPattern = true;
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 6; i++)
             {
                 GameObject brick = Instantiate(bricks);
                 brick.transform.parent = GameObject.Find("Pattern").transform;

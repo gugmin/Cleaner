@@ -11,9 +11,28 @@ public class ShopItem : MonoBehaviour
     int eq = 0;
     public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
     public GameObject[] EquipCheck;
+    [SerializeField] int SandPoint=300;
+    [SerializeField] int AngelPoint=500;
+    [SerializeField] int ShieldPoint=700;
+    [SerializeField] int AmuletPoint=900;
+    [SerializeField] Button[] btn;
 
     private void Awake()
     {
+        if (PlayerPrefs.HasKey("StudyPoint"))
+        {
+            int CurPoint = PlayerPrefs.GetInt("StudyPoint");
+            //CurPoint = 500;
+            if (CurPoint < AmuletPoint)
+                btn[3].interactable = false;
+            if (CurPoint < ShieldPoint)
+                btn[2].interactable = false;
+            if (CurPoint < AngelPoint)
+                btn[1].interactable = false;
+            if (CurPoint < SandPoint)
+                btn[0].interactable = false;
+        }
+
         for (int i = 0; i < shopItem.Length; i++)
         {
             if (PlayerPrefs.HasKey(shopItem[i]))

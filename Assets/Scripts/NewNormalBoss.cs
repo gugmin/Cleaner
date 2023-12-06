@@ -73,6 +73,7 @@ public class NewNormalBoss : MonoBehaviour
 
     void BossDead()
     {
+        PlayerPrefs.SetString("NormalBoss", "Clear");
         // Boss 움직임 Stop 은 FixedUpdate() 에서 구현.
 
         // Boss 죽었을 때 dead(붉은 색) 으로 췌인지

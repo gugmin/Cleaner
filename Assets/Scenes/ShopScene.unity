@@ -6827,6 +6827,15 @@ MonoBehaviour:
   - {fileID: 1034424416}
   - {fileID: 1328872744}
   - {fileID: 1691122334}
+  SandPoint: 300
+  AngelPoint: 500
+  ShieldPoint: 700
+  AmuletPoint: 900
+  btn:
+  - {fileID: 1530231372}
+  - {fileID: 558276220}
+  - {fileID: 1815381224}
+  - {fileID: 1052253973}
 --- !u!1 &2066045175
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,11 +51,13 @@ public class GameManager : MonoBehaviour
     public bool isDead = false;
     public bool isStageClear = false;
     public bool isAngel = false;
+    public bool isGameOver = false;
 
     Scene scene;
 
     private void Awake()
     {
+        time = maxTime;
         I = this;
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
@@ -90,7 +92,12 @@ public class GameManager : MonoBehaviour
             isDead = false;
             ball.Invoke("ReSpawn", 2f);
         }
-        else if (life == 0)
+        else if (life == 0 && !isGameOver)
+        {
+            isGameOver = true;
+            GameEnd();
+        }
+        if(isStageClear == true)
         {
             GameEnd();
         }
@@ -143,6 +150,32 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         endPanel.SetActive(true);
+        int star = 0;
+        if (time >= 120)
+        {
+            star = 3;
+        }
+        else if (time >= 60)
+        {
+            star = 2;
+        }
+        else
+        {
+            star = 1;
+        }
+        if (life == 0)
+            star = 1;
+
+        // score : 원래 점수, plus : 최종 점수
+        int plus = score * star;
+        if (PlayerPrefs.HasKey("Sand"))
+            plus = plus + plus * 20 / 100;
+
+        //누적공부시간 저장
+        int curPoint = 0;
+        if(PlayerPrefs.HasKey("StudyPoint"))
+            curPoint = PlayerPrefs.GetInt("StudyPoint");
+        PlayerPrefs.SetInt("StudyPoint", curPoint + plus);
         //최고점수 비교
         if (score > maxScore)
         {
@@ -151,9 +184,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(scene.name, maxScore);
         maxScoreText.text = "최고 점수 : " + maxScore.ToString();
         thisScoreText.text = "현재 점수 : " + score.ToString();
-
-        //남은시간 + 스코어 = 누적공부시간
-        //studyPoint = score + time;
     }
     
 
@@ -182,6 +212,7 @@ public class GameManager : MonoBehaviour
     {
         cm.StartRound();
         brickmaker.isBoss = true;
+        paddle.SetInit();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
@@ -207,8 +238,8 @@ public class GameManager : MonoBehaviour
         eqSprite();
         UseShield();
         brickmaker.MakeEasyBrick(currentRound);
-        time = maxTime;
         cm.StartRound();
+        paddle.SetInit();
         yield return new WaitForSecondsRealtime(2.0f);
         LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
         RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);

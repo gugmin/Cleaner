@@ -51,6 +51,13 @@ public class PaddleControl : MonoBehaviour
         transform.position = new Vector3(0, -4, 0);
     }
 
+    public void SetInit()
+    {
+        SetSpeed(5f);
+        SetSize(1f);
+        isHaste = false;
+        isPower = false;
+    }
 
     public float GetSpeed()
     {

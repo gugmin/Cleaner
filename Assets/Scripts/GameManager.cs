@@ -72,6 +72,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (scene.name == "HardScene")
+        {
+            StartCoroutine(StartEasyBossRound());
+        }
+        else
         StartCoroutine(StartRound());
     }
 

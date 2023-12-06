@@ -2,23 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 
 public class ShopItem : MonoBehaviour
 {
-    public Image[] ShopItems;
-    public Image[] EquipItems;
-    void Start()
+    int eq = 0;
+    public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
+    public GameObject[] EquipCheck;
+
+    private void Awake()
     {
-        ShopItems = GetComponent<Image[]>();
-        EquipItems = GetComponent<Image[]>();
+        for (int i = 0; i < shopItem.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(shopItem[i]))
+            {
+                EquipCheck[i].SetActive(true);
+            }
+            else
+            {
+                EquipCheck[i].SetActive(false);
+            }
+        }
     }
 
-    void Update()
+    public void Equip()
     {
-        
+        if (eq < 2)
+        {
+            GameObject gameObject = EventSystem.current.currentSelectedGameObject;
+            PlayerPrefs.SetString(gameObject.name, gameObject.name);
+            eq++;
+        }
+        else
+        {
+            //TODO ÆÇ³Ú
+        }
     }
-    public void SelectItem()
+    public void Unequip()
     {
-        //PlayerPrefs.GetString(EquipItems[Image.name]);
+        GameObject gameObject = EventSystem.current.currentSelectedGameObject;
+        if (PlayerPrefs.HasKey(gameObject.name)) 
+        {
+            PlayerPrefs.DeleteKey(gameObject.name);
+            eq--;
+        }
     }
 }

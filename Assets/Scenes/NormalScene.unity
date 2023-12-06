@@ -6752,7 +6752,7 @@ GameObject:
   - component: {fileID: 584667047}
   - component: {fileID: 584667046}
   m_Layer: 5
-  m_Name: Time
+  m_Name: score
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6798,7 +6798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uCF54\uC5B4 : 00"
+  m_text: "\uC2A4\uCF54\uC5B4 : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acf9c5823c68436409c57728909a3849, type: 2}
   m_sharedMaterial: {fileID: -3919506750925512028, guid: acf9c5823c68436409c57728909a3849, type: 2}
@@ -15163,7 +15163,7 @@ MonoBehaviour:
   angel: {fileID: 1318802168}
   Items: {fileID: 766646173}
   endPanel: {fileID: 1071428705}
-  scoreTxt: {fileID: 1651104688}
+  scoreTxt: {fileID: 584667046}
   maxScoreText: {fileID: 1826670812}
   thisScoreText: {fileID: 1651104688}
   _ball: {fileID: 5456244250237716574, guid: 13d0be539e2fd734d85c4a81fd643b4f, type: 3}
@@ -15265,10 +15265,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "0 \uD604\uC7AC\uC810\uC218"
+  m_text: "\uD604\uC7AC\uC810\uC218 : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acf9c5823c68436409c57728909a3849, type: 2}
-  m_sharedMaterial: {fileID: -4764388522711226838, guid: acf9c5823c68436409c57728909a3849, type: 2}
+  m_sharedMaterial: {fileID: -3919506750925512028, guid: acf9c5823c68436409c57728909a3849, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16018,10 +16018,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "0 \uCD5C\uACE0 \uC810\uC218"
+  m_text: "\uCD5C\uACE0 \uC810\uC218 : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acf9c5823c68436409c57728909a3849, type: 2}
-  m_sharedMaterial: {fileID: -4764388522711226838, guid: acf9c5823c68436409c57728909a3849, type: 2}
+  m_sharedMaterial: {fileID: -3919506750925512028, guid: acf9c5823c68436409c57728909a3849, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

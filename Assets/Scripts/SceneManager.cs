@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
-{ 
-    // Start is called before the first frame update
-    void Start()
+{
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (gameObject.name == "NoramlBtn" && PlayerPrefs.HasKey("EasyBoss")) //이지보스 클리어
+        {
+            GetComponent<Button>().interactable = true;
+        }
+        else if (gameObject.name == "HardBtn" && PlayerPrefs.HasKey("NormalBoss")) //노말보스 클리어
+        {
+            GetComponent<Button>().interactable = true;
+        }
     }
 
     public void EazySceneLoad()

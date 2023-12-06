@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
         ball.ReSpawn();
         brickmaker.isClear = false;
         if (currentRound >= 3)
-            StartCoroutine(StartEasyBossRound());
+            StartCoroutine(StartRound());
         else
             StartCoroutine(StartRound());
             Items.DestroyAllChild();

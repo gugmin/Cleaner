@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        time = maxTime;
         I = this;
         scene = SceneManager.GetActiveScene();
         Time.timeScale = 0.0f;
@@ -208,7 +209,6 @@ public class GameManager : MonoBehaviour
         eqSprite();
         UseShield();
         brickmaker.MakeEasyBrick(currentRound);
-        time = maxTime;
         cm.StartRound();
         paddle.SetInit();
         yield return new WaitForSecondsRealtime(2.0f);

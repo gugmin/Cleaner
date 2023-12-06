@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
         I = this;
         bgm = GetComponent<AudioSource>();
         BgmSoundRandomPlay();
-        volumeSlider.value = DataManager.I.LoadVolumeData();
+        //volumeSlider.value = DataManager.I.LoadVolumeData();
     }
     void Update()
     {

@@ -5,10 +5,16 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     private InputEvent controller;
+    private int plusAmulet = 10;
 
     private void Awake()
     {
         controller = GetComponent<InputEvent>();
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Amulet")) plusAmulet = 10;
     }
 
     // Brick 이 Ball 과 만나서 파괴될 때의 함수 ( tag 를 사용한다는 가정 하에 )
@@ -18,7 +24,7 @@ public class Brick : MonoBehaviour
         {
 
             int rand = Random.RandomRange(0, 100);
-            if(rand < 100)
+            if(rand < 20 + plusAmulet)
             {
                 controller.CallItemEvent(transform.position);
             }

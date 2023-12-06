@@ -24,7 +24,7 @@ public class Brick : MonoBehaviour
         {
 
             int rand = Random.RandomRange(0, 100);
-            if(rand < 20 + plusAmulet)
+            if(rand < 100 + plusAmulet)
             {
                 controller.CallItemEvent(transform.position);
             }

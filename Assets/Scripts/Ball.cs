@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -110,7 +111,6 @@ public class Ball : MonoBehaviour
         {
             SoundManager.I.PlayDieSound();
             ps.Play();
-
             GameManager.I.GetBalls().ballCount--;
             ballRigidbody.velocity = Vector2.zero;
             if (GameManager.I.GetBalls().ballCount == 0)
@@ -120,7 +120,7 @@ public class Ball : MonoBehaviour
                 {
                     SoundManager.I.PlayAngelSound();
                     GameManager.I.GetBalls().ballCount++;
-                    GameManager.I.isAngel = false;
+                    //GameManager.I.isAngel = false;
                     StartCoroutine(GameManager.I.AngelRespawn(gameObject));
                     return;
                 }
@@ -129,6 +129,7 @@ public class Ball : MonoBehaviour
                 GameManager.I.LostLife();
                 GameManager.I.GetPaddle().SetInit();
             }
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
             Destroy(gameObject, 2f);
         }
         else

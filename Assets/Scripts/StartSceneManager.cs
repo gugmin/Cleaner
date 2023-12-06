@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-<<<<<<<< HEAD:Assets/Scripts/StageManager.cs
-public class StageManager : MonoBehaviour
-========
 public class StartSceneManager : MonoBehaviour
->>>>>>>> jw6-2:Assets/Scripts/StartSceneManager.cs
 {
     [SerializeField] GameObject SettingUI;
     void Awake()

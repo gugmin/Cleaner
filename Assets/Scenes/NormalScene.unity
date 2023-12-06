@@ -15676,7 +15676,7 @@ MonoBehaviour:
   flash: {fileID: 524075236}
   angel: {fileID: 1318802168}
   Items: {fileID: 766646173}
-  endPanel: {fileID: 0}
+  endPanel: {fileID: 1071428705}
   scoreTxt: {fileID: 584667046}
   maxScoreText: {fileID: 1651104688}
   thisScoreText: {fileID: 1826670812}

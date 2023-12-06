@@ -120,7 +120,7 @@ public class Ball : MonoBehaviour
                 {
                     SoundManager.I.PlayAngelSound();
                     GameManager.I.GetBalls().ballCount++;
-                    //GameManager.I.isAngel = false;
+                    GameManager.I.isAngel = false;
                     StartCoroutine(GameManager.I.AngelRespawn(gameObject));
                     return;
                 }

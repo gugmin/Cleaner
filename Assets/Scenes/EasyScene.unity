@@ -2962,7 +2962,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1071428709
 RectTransform:
@@ -5321,8 +5321,8 @@ MonoBehaviour:
   studyPoint: 0
   Shield: {fileID: 1788816308}
   TimeBar: {fileID: 2053726017}
-  maxTime: 120
-  time: 120
+  maxTime: 180
+  time: 180
   currentRound: 0
   isDead: 0
   isStageClear: 0

@@ -15186,8 +15186,8 @@ MonoBehaviour:
   studyPoint: 0
   Shield: {fileID: 2103550926}
   TimeBar: {fileID: 2053726017}
-  maxTime: 120
-  time: 120
+  maxTime: 180
+  time: 180
   currentRound: 0
   isDead: 0
   isStageClear: 0

@@ -7,16 +7,23 @@ using UnityEngine.UI;
 public class StartSceneManager : MonoBehaviour
 {
     [SerializeField] GameObject SettingUI;
+    [SerializeField] Button[] button;
     void Awake()
     {
-        if (gameObject.name == "NoramlBtn" && PlayerPrefs.HasKey("EasyBoss")) //이지보스 클리어
+        if (PlayerPrefs.HasKey("EasyBoss")) //이지보스 클리어
         {
-            GetComponent<Button>().interactable = true;
+            print("ddddddddd");
+            button[0].interactable = true;
         }
-        else if (gameObject.name == "HardBtn" && PlayerPrefs.HasKey("NormalBoss")) //노말보스 클리어
+        else
+        { button[0].interactable = false; }
+
+        if (PlayerPrefs.HasKey("NormalBoss")) //노말보스 클리어
         {
-            GetComponent<Button>().interactable = true;
+            button[1].interactable = true;
         }
+        else
+        { button[1].interactable = false; }
     }
 
     public void EasySceneLoad()
@@ -31,7 +38,6 @@ public class StartSceneManager : MonoBehaviour
 
     public void HardSceneLoad()
     {
-        print("공사중");
-        //SceneManager.LoadScene("HardScene");
+        SceneManager.LoadScene("HardScene");
     }
 }

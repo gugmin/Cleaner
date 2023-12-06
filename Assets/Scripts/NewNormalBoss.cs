@@ -12,7 +12,7 @@ public class NewNormalBoss : MonoBehaviour
     private GameObject brickParent;
 
     [SerializeField] private Image hpBar;
-
+    bool isNBossDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,12 +73,14 @@ public class NewNormalBoss : MonoBehaviour
 
     void BossDead()
     {
+        isNBossDead = true;
         PlayerPrefs.SetString("NormalBoss", "Clear");
         // Boss 움직임 Stop 은 FixedUpdate() 에서 구현.
 
         // Boss 죽었을 때 dead(붉은 색) 으로 췌인지
-        gameObject.transform.Find("alive").gameObject.SetActive(false);
-        gameObject.transform.Find("dead").gameObject.SetActive(true);
+        //gameObject.transform.Find("alive").gameObject.SetActive(false);
+        //gameObject.transform.Find("dead").gameObject.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0 , 1);
 
         // 시간 0 으로 설정.
         //Time.timeScale = 0.0f;

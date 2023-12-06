@@ -24,14 +24,17 @@ public class ShopItem : MonoBehaviour
             int CurPoint = PlayerPrefs.GetInt("StudyPoint");
             StudyPointTxt.text = "누적 공부시간 : "+CurPoint.ToString()+"시간";
             //CurPoint = 500;
-            if (CurPoint < AmuletPoint)
-                btn[3].interactable = false;
-            if (CurPoint < ShieldPoint)
-                btn[2].interactable = false;
-            if (CurPoint < AngelPoint)
-                btn[1].interactable = false;
-            if (CurPoint < SandPoint)
-                btn[0].interactable = false;
+            if (CurPoint > AmuletPoint)
+                btn[3].interactable = true;
+
+            if (CurPoint > ShieldPoint)
+                btn[2].interactable = true;
+
+            if (CurPoint > AngelPoint)
+                btn[1].interactable = true;
+
+            if (CurPoint > SandPoint)
+                btn[0].interactable = true;
         }
 
         for (int i = 0; i < shopItem.Length; i++)

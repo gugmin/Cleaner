@@ -472,7 +472,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 94890585}
   m_OnClick:
     m_PersistentCalls:
@@ -900,7 +900,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 161059947}
   m_OnClick:
     m_PersistentCalls:
@@ -3454,6 +3454,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingUI: {fileID: 1762669034}
+  button:
+  - {fileID: 161059946}
+  - {fileID: 94890584}
 --- !u!4 &1593642934
 Transform:
   m_ObjectHideFlags: 0

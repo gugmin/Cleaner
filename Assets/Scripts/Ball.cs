@@ -144,7 +144,12 @@ public class Ball : MonoBehaviour
             {
                 GameManager.I.Shield.SetActive(false);
             }
-            
+            else if (collision.collider.CompareTag("RealH"))
+            {
+                GameManager.I.score = 100;
+                GameManager.I.isStageClear = true;
+            }
+
         }
     }
 }

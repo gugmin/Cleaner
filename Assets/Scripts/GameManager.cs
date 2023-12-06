@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
         {
             star = 1;
         }
-        if (life == 0)
+        if (life <= 0)
             star = 1;
 
         // score : 원래 점수, plus : 최종 점수
@@ -230,6 +230,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.01f);
         }
         boss.SetActive(true);
+        //TODO boss.GetComponent<Sprite
         while (c.a > 0)
         {
             c.a -= 0.03f;

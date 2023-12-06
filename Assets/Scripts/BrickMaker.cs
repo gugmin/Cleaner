@@ -8,6 +8,7 @@ public class BrickMaker : MonoBehaviour
     //[SerializeField] private int totalBrickCnt = 35;
 
     public GameObject brick;
+    public GameObject brick2;
     public bool isClear = false;
     public bool isBoss = false;
     // Start is called before the first frame update
@@ -39,13 +40,14 @@ public class BrickMaker : MonoBehaviour
 
                     float x = (i % 5) * 1.2f - 2.4f;
                     float y = (i / 5) * 0.5f;
+                   
                     newBrick.transform.position = new Vector3(x, y, 0);
                 }
                 break;
             case 2:
                 for (int i = 0; i < 25; i++)
                 {
-                    GameObject newBrick = Instantiate(brick);
+                    GameObject newBrick = Instantiate(brick2);
                     newBrick.transform.parent = GameObject.Find("Bricks").transform;
 
                     float x = (i % 5) * 1.2f - 2.4f;

@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     bool firstPattern = false;
     bool secondPattern = false;
     bool thirdPattern = false;
+    [SerializeField ]float ballDamage;
 
     private void Start()
     {
@@ -24,7 +25,6 @@ public class Boss : MonoBehaviour
         if(HpBar.fillAmount == 0)
         {
             GameManager.I.isStageClear = true;
-            // 게임종료 시 엔드판넬 생성
         }
     }
 
@@ -32,12 +32,13 @@ public class Boss : MonoBehaviour
     {
         if (collision.collider.CompareTag( "Ball")) 
         {
-            Color Mirrorcolor = Mirror.color;
             // 투명도 줄이기
-            Mirrorcolor.a -= 0.1f;
+            Color Mirrorcolor = Mirror.color;
+            Mirrorcolor.a -= ballDamage;
             Selectpattern();
             // image길이 줄이기, 전체가 1이기 때문에 0.1씩 줄이게 되면 총 10대를 맞게 된다.
-            HpBar.fillAmount -= 0.1f;
+            HpBar.fillAmount -= ballDamage;
+            // 강철공일 경우 0.2 데미지가 들어가도록 해야함.
             if (HpBar.fillAmount < 0f)
             {
                 Mirrorcolor.a = 0f;
@@ -58,10 +59,16 @@ public class Boss : MonoBehaviour
             {
                 GameObject brick = Instantiate(bricks);
                 brick.transform.parent = GameObject.Find("Pattern").transform;
+                // 색 변경
+                // newBrick.GetComponent<SpriteRenderer>().color = Color.blue;
+                // 이미지 변경
+                // newBrick.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Brick/Sprite-0011");
+
                 // x = 갯수 * 가로 공백 - 초기위치
                 // y = 갯수 * 세로 공백 - 초기위치
                 float x = (i % 6) * 1.2f - 3f;
                 float y =  -0.8f;
+
                 brick.transform.position = new Vector3(x, y, 0);
             }
         }
@@ -74,7 +81,7 @@ public class Boss : MonoBehaviour
                 GameObject brick = Instantiate(bricks);
                 brick.transform.parent = GameObject.Find("Pattern").transform;
                 float x = (i % 6) * 1.2f - 3f;
-                float y = (i / 6) * 0.5f - 0.8f;
+                float y = -1.2f;
                 brick.transform.position = new Vector3(x, y, 0);
             }
         }

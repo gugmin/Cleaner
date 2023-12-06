@@ -118,6 +118,7 @@ public class Ball : MonoBehaviour
                 GameManager.I.GetItems().DestroyAllChild();
                 if (GameManager.I.isAngel && GameManager.I.life == 1)
                 {
+                    SoundManager.I.PlayAngelSound();
                     GameManager.I.GetBalls().ballCount++;
                     GameManager.I.isAngel = false;
                     StartCoroutine(GameManager.I.AngelRespawn(gameObject));
@@ -139,8 +140,6 @@ public class Ball : MonoBehaviour
             }
             else if (collision.collider.CompareTag("Shield"))
             {
-                ballRigidbody.velocity = Vector2.zero;
-                ballRigidbody.AddForce((transform.position - collision.transform.position).normalized * speed);
                 GameManager.I.Shield.SetActive(false);
             }
             

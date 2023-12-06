@@ -12,4 +12,5 @@ public class CameraMove : MonoBehaviour
     {
         transform.DOMove(new Vector3(0, 10, -10), 2).SetUpdate(true);
     }
+
 }

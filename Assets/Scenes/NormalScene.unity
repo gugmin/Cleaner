@@ -15554,6 +15554,7 @@ MonoBehaviour:
   LeftUI: {fileID: 2083339695}
   RightUI: {fileID: 979215971}
   boss: {fileID: 663927882}
+  bossimg: {fileID: 824036009}
   paddle: {fileID: 1350142912}
   ball: {fileID: 1658587934}
   brickmaker: {fileID: 773195306}
@@ -15562,8 +15563,8 @@ MonoBehaviour:
   Items: {fileID: 766646173}
   endPanel: {fileID: 1071428705}
   scoreTxt: {fileID: 584667046}
-  maxScoreText: {fileID: 1651104688}
-  thisScoreText: {fileID: 1826670812}
+  maxScoreText: {fileID: 1826670812}
+  thisScoreText: {fileID: 1651104688}
   _ball: {fileID: 5456244250237716574, guid: 13d0be539e2fd734d85c4a81fd643b4f, type: 3}
   life: 3
   maxLife: 3

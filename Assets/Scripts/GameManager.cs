@@ -19,12 +19,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject RightUI;
 
     [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject bossimg;
     [SerializeField] private PaddleControl paddle;
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
     [SerializeField] private SpriteRenderer flash;
 
-    [SerializeField] private GameObject angel;   
+    [SerializeField] private GameObject angel;
     [SerializeField] private ItemMaker Items;
 
     public GameObject endPanel;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     public bool isStageClear = false;
     public bool isAngel = false;
     public bool isGameOver = false;
+    float timer = 0.0f;
 
     Scene scene;
 
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
         currentRound = 1;
         if (PlayerPrefs.HasKey(shopItem[1])) isAngel = true;
-        
+
         if (PlayerPrefs.HasKey(scene.name))
         {
             maxScore = PlayerPrefs.GetInt(scene.name);
@@ -77,21 +79,21 @@ public class GameManager : MonoBehaviour
             StartCoroutine(StartEasyBossRound());
         }
         else
-        StartCoroutine(StartRound());
+            StartCoroutine(StartRound());
     }
 
     // Update is called once per frame
     void Update()
     {   //
         time -= Time.deltaTime;
-        if(TimeBar != null)
+        if (TimeBar != null)
         {
             TimeBar.fillAmount = time / maxTime;
-            rtan.GetComponent<RectTransform>().localPosition = new Vector3( TimeBar.fillAmount*(-70)+35, 0, 0);
+            rtan.GetComponent<RectTransform>().localPosition = new Vector3(TimeBar.fillAmount * (-70) + 35, 0, 0);
         }
         //
         scoreTxt.text = "스코어 : " + score.ToString("");
-     
+
         if (isDead == true)
         {
             isDead = false;
@@ -102,9 +104,12 @@ public class GameManager : MonoBehaviour
             isGameOver = true;
             GameEnd();
         }
-        if(isStageClear == true)
+        if (isStageClear == true)
         {
-            GameEnd();
+            ball.DestroyAllChild();
+            if(boss!=null)
+                StartCoroutine(BossShake(1.0f, 0.1f));
+            Invoke("GameEnd", 2f);
         }
     }
 
@@ -139,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     public void LostLife()
     {
-        
+
         for (int i = 0; i < maxLife; i++)
         {
             lifeSprite[i].color = new Color(1, 1, 1, 0.5f);
@@ -150,11 +155,12 @@ public class GameManager : MonoBehaviour
             lifeSprite[i].color = new Color(1, 1, 1, 1);
         }
     }
-    
+
     private void GameEnd()
     {
         Time.timeScale = 0f;
         endPanel.SetActive(true);
+        Destroy(boss);
         int star = 0;
         if (time >= 120)
         {
@@ -178,7 +184,7 @@ public class GameManager : MonoBehaviour
 
         //누적공부시간 저장
         int curPoint = 0;
-        if(PlayerPrefs.HasKey("StudyPoint"))
+        if (PlayerPrefs.HasKey("StudyPoint"))
             curPoint = PlayerPrefs.GetInt("StudyPoint");
         PlayerPrefs.SetInt("StudyPoint", curPoint + plus);
         //최고점수 비교
@@ -190,7 +196,7 @@ public class GameManager : MonoBehaviour
         maxScoreText.text = "최고 점수 : " + maxScore.ToString();
         thisScoreText.text = "현재 점수 : " + score.ToString();
     }
-    
+
 
     public void PauseGame()
     {
@@ -270,7 +276,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(StartEasyBossRound());
         else
             StartCoroutine(StartRound());
-            Items.DestroyAllChild();
+        Items.DestroyAllChild();
     }
     public IEnumerator AngelRespawn(GameObject ball)
     {
@@ -279,7 +285,7 @@ public class GameManager : MonoBehaviour
         Color c = angel.GetComponent<SpriteRenderer>().color;
         while (c.a < 1)
         {
-            c.a += Time.unscaledDeltaTime/2;
+            c.a += Time.unscaledDeltaTime / 2;
             angel.GetComponent<SpriteRenderer>().color = c;
             yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
         }
@@ -293,6 +299,13 @@ public class GameManager : MonoBehaviour
         angel.SetActive(false);
         ball.GetComponent<Collider2D>().enabled = true;
         yield return null;
+    }
+    public IEnumerator BossShake(float time, float power)
+    {
+        float timer = 0;
+        bossimg.transform.localPosition = UnityEngine.Random.insideUnitSphere * power + bossimg.transform.localPosition;
+        timer += Time.unscaledDeltaTime;
+        yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
     }
     public PaddleControl GetPaddle()
     {
@@ -308,3 +321,4 @@ public class GameManager : MonoBehaviour
         return Items;
     }
 }
+

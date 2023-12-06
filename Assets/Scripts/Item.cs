@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Item : MonoBehaviour
 {
     private PaddleControl paddle;
     [SerializeField] private GameObject ball;
     private GameObject ballParent;
-
-
+    Scene scene ;
 
 
     private void Start()
     {
         paddle = GameManager.I.GetPaddle();
         ballParent = GameObject.Find("Balls");
+        scene = SceneManager.GetActiveScene();
+
+
     }
 
 
@@ -36,6 +40,10 @@ public class Item : MonoBehaviour
                         if (originBall.GetIsStart() == false) break;
                         GameObject newBall = Instantiate(ball);
                         GameManager.I.GetBalls().ballCount++;
+
+                        print(scene.name);
+                        newBall.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Item/" + scene.name);
+                        
 
                         newBall.transform.GetComponent<Ball>().SetIsStart(true);
                         newBall.transform.position = originBall.transform.position + new Vector3(0, 0.2f, 0);

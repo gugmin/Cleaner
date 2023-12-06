@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class BallMaker : MonoBehaviour
 {
     public Ball ball;
+    public int ballCount = 0;
 
     void Start()
     {
@@ -19,8 +20,9 @@ public class BallMaker : MonoBehaviour
         newBall.transform.parent = GameObject.Find("Balls").transform;
         newBall.ResetPos();
         newBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        ballCount++;
     }
-        public void DestroyAllChild()
+    public void DestroyAllChild()
     {
         Transform[] children = GetComponentsInChildren<Transform>();
         foreach (Transform child in children)

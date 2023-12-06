@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 584667047}
   - component: {fileID: 584667046}
   m_Layer: 5
-  m_Name: Time
+  m_Name: score
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5344,8 +5344,9 @@ MonoBehaviour:
   brickmaker: {fileID: 773195306}
   flash: {fileID: 1772262542}
   Shield: {fileID: 2103550926}
+  Items: {fileID: 766646173}
   endPanel: {fileID: 1071428705}
-  scoreTxt: {fileID: 1651104688}
+  scoreTxt: {fileID: 584667046}
   maxScoreText: {fileID: 1826670812}
   thisScoreText: {fileID: 1651104688}
   _ball: {fileID: 5456244250237716574, guid: 547a884a02a4d584f9bc31d0620256ef, type: 3}
@@ -5355,8 +5356,18 @@ MonoBehaviour:
   - {fileID: 1903665024}
   - {fileID: 1087286665}
   - {fileID: 105774907}
+  eqitem:
+  - {fileID: 1242716542}
+  - {fileID: 2139451808}
+  shopItem:
+  - Sand
+  - Angel
+  - Shield
+  - Amulet
   score: 0
   maxScore: 0
+  studyPoint: 0
+  Shield: {fileID: 2103550926}
   TimeBar: {fileID: 2053726017}
   maxTime: 120
   time: 3000
@@ -5436,7 +5447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "0 \uD604\uC7AC\uC810\uC218"
+  m_text: "\uD604\uC7AC \uC810\uC218 : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acf9c5823c68436409c57728909a3849, type: 2}
   m_sharedMaterial: {fileID: -3919506750925512028, guid: acf9c5823c68436409c57728909a3849, type: 2}
@@ -5595,6 +5606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 4650151341721274430, guid: 547a884a02a4d584f9bc31d0620256ef, type: 3}
+  ballCount: 0
 --- !u!1 &1689704184
 GameObject:
   m_ObjectHideFlags: 0
@@ -6361,7 +6373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "0 \uCD5C\uACE0 \uC810\uC218"
+  m_text: "\uCD5C\uACE0 \uC810\uC218 : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acf9c5823c68436409c57728909a3849, type: 2}
   m_sharedMaterial: {fileID: -3919506750925512028, guid: acf9c5823c68436409c57728909a3849, type: 2}
@@ -7428,7 +7440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2103550927
 SpriteRenderer:
   m_ObjectHideFlags: 0

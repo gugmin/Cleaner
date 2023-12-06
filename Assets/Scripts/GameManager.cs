@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BallMaker ball;
     [SerializeField] private BrickMaker brickmaker;
     [SerializeField] private SpriteRenderer flash;
-    public GameObject Shield;
 
     [SerializeField] private GameObject angel;   
     [SerializeField] private ItemMaker Items;

@@ -17,6 +17,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] int AmuletPoint=900;
     [SerializeField] Button[] btn;
     [SerializeField] TMP_Text StudyPointTxt;
+    [SerializeField] GameObject WarningUI;
     private void Awake()
     {
         if (PlayerPrefs.HasKey("StudyPoint"))
@@ -36,18 +37,7 @@ public class ShopItem : MonoBehaviour
             if (CurPoint > SandPoint)
                 btn[0].interactable = true;
         }
-
-        for (int i = 0; i < shopItem.Length; i++)
-        {
-            if (PlayerPrefs.HasKey(shopItem[i]))
-            {
-                EquipCheck[i].SetActive(true);
-            }
-            else
-            {
-                EquipCheck[i].SetActive(false);
-            }
-        }
+        EquipChk();
     }
 
     public void Equip()
@@ -60,7 +50,8 @@ public class ShopItem : MonoBehaviour
         }
         else
         {
-            //TODO ÆÇ³Ú
+            WarningUI.SetActive(true);
+            EquipChk();
         }
     }
     public void Unequip()
@@ -70,6 +61,21 @@ public class ShopItem : MonoBehaviour
         {
             PlayerPrefs.DeleteKey(gameObject.name);
             eq--;
+        }
+    }
+    public void EquipChk()
+    {
+        for (int i = 0; i < shopItem.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(shopItem[i]))
+            {
+                EquipCheck[i].SetActive(true);
+                eq++;
+            }
+            else
+            {
+                EquipCheck[i].SetActive(false);
+            }
         }
     }
 }

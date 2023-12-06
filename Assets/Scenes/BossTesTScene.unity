@@ -5345,7 +5345,8 @@ MonoBehaviour:
   ball: {fileID: 1658587934}
   brickmaker: {fileID: 773195306}
   flash: {fileID: 1772262542}
-  Shield: {fileID: 2103550926}
+  angel: {fileID: 0}
+  Items: {fileID: 766646173}
   endPanel: {fileID: 1071428705}
   scoreTxt: {fileID: 1651104688}
   maxScoreText: {fileID: 1826670812}
@@ -5357,14 +5358,23 @@ MonoBehaviour:
   - {fileID: 1903665024}
   - {fileID: 1087286665}
   - {fileID: 105774907}
+  eqitem: []
+  shopItem:
+  - Sand
+  - Angel
+  - Shield
+  - Amulet
   score: 0
   maxScore: 0
+  studyPoint: 0
+  Shield: {fileID: 2103550926}
   TimeBar: {fileID: 2053726017}
   maxTime: 120
   time: 3000
   currentRound: 0
   isDead: 0
   isStageClear: 0
+  isAngel: 0
 --- !u!4 &1624833687
 Transform:
   m_ObjectHideFlags: 0
@@ -5597,6 +5607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 4650151341721274430, guid: 547a884a02a4d584f9bc31d0620256ef, type: 3}
+  ballCount: 0
 --- !u!1 &1689704184
 GameObject:
   m_ObjectHideFlags: 0

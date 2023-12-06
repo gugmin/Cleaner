@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class StartSceneManager : MonoBehaviour
 {
+    [SerializeField] GameObject SettingUI;
     void Awake()
     {
         if (gameObject.name == "NoramlBtn" && PlayerPrefs.HasKey("EasyBoss")) //이지보스 클리어
@@ -18,18 +19,19 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    public void EazySceneLoad()
+    public void EasySceneLoad()
     {
-        SceneManager.LoadScene("GugminScene");
+        SceneManager.LoadScene("EasyScene");
     }
 
     public void NormalSceneLoad()
     {
-        SceneManager.LoadScene("Lsc_NormalScene");
+        SceneManager.LoadScene("NormalScene");
     }
 
     public void HardSceneLoad()
     {
-        SceneManager.LoadScene("Lsc_HardScene");
+        print("공사중");
+        //SceneManager.LoadScene("HardScene");
     }
 }

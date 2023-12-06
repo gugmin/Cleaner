@@ -20,4 +20,9 @@ public class DataManager : MonoBehaviour
         else
             return 0.1f;
     }
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }

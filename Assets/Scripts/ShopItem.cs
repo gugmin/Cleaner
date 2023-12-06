@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
-
+using TMPro;
 public class ShopItem : MonoBehaviour
 {
     int eq = 0;
@@ -16,12 +16,13 @@ public class ShopItem : MonoBehaviour
     [SerializeField] int ShieldPoint=700;
     [SerializeField] int AmuletPoint=900;
     [SerializeField] Button[] btn;
-
+    [SerializeField] TMP_Text StudyPointTxt;
     private void Awake()
     {
         if (PlayerPrefs.HasKey("StudyPoint"))
         {
             int CurPoint = PlayerPrefs.GetInt("StudyPoint");
+            StudyPointTxt.text = "누적 공부시간 : "+CurPoint.ToString()+"시간";
             //CurPoint = 500;
             if (CurPoint < AmuletPoint)
                 btn[3].interactable = false;

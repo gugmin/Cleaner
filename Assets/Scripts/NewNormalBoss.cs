@@ -12,7 +12,6 @@ public class NewNormalBoss : MonoBehaviour
     private GameObject brickParent;
 
     [SerializeField] private Image hpBar;
-    bool isNBossDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +72,6 @@ public class NewNormalBoss : MonoBehaviour
 
     void BossDead()
     {
-        isNBossDead = true;
         PlayerPrefs.SetString("NormalBoss", "Clear");
         // Boss 움직임 Stop 은 FixedUpdate() 에서 구현.
 

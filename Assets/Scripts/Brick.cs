@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour
         if (collision.gameObject.tag == "Ball")
         {
 
-            int rand = Random.RandomRange(0, 100);
+            int rand = Random.Range(0, 100);
             if(rand < 20 + plusAmulet)
             {
                 controller.CallItemEvent(transform.position);

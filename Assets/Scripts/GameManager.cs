@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
     public bool isStageClear = false;
     public bool isAngel = false;
     public bool isGameOver = false;
-    float timer = 0.0f;
 
     Scene scene;
 

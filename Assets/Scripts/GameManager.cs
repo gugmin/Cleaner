@@ -94,6 +94,10 @@ public class GameManager : MonoBehaviour
         {
             GameEnd();
         }
+        if (isStageClear == true)
+        {
+            GameEnd();
+        }
     }
 
     public void eqSprite()

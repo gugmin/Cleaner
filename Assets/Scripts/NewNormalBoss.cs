@@ -81,6 +81,7 @@ public class NewNormalBoss : MonoBehaviour
 
         // 시간 0 으로 설정.
         //Time.timeScale = 0.0f;
+        PlayerPrefs.SetString("NormalBoss", "Clear");
         GameManager.I.isStageClear = true;
     }
 

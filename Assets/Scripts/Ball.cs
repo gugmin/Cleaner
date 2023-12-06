@@ -33,7 +33,7 @@ public class Ball : MonoBehaviour
     {
         if (!isStart)
         {
-            transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.5f, 0);
+            transform.position = paddle.gameObject.transform.position + new Vector3(0, 0.8f, 0);
         }
         
         mag = ballRigidbody.velocity.magnitude;
@@ -127,6 +127,7 @@ public class Ball : MonoBehaviour
                 GameManager.I.isDead = true;
                 GameManager.I.life -= 1;
                 GameManager.I.LostLife();
+                GameManager.I.GetPaddle().SetInit();
             }
             Destroy(gameObject, 2f);
         }

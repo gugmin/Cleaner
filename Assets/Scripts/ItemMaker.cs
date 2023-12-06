@@ -43,7 +43,7 @@ public class ItemMaker: MonoBehaviour
 
         GameObject newItem = Instantiate(item);
         newItem.transform.position = position;
-        newItem.GetComponent<Rigidbody2D>().AddForce(Vector2.down * 50f);
+        newItem.GetComponent<Rigidbody2D>().AddForce(Vector2.down * 80f);
 
         string name = Enum.GetName(typeof(ItemName), rand);
         newItem.name = name;

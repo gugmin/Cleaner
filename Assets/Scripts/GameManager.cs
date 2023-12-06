@@ -178,6 +178,30 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("StartScene");
     }
+    public IEnumerator StartEasyBossRound()
+    {
+        cm.StartRound();
+        brickmaker.isBoss = true;
+        yield return new WaitForSecondsRealtime(2.0f);
+        LeftUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        RightUI.transform.DOMove(new Vector3(0, 0, 0), 1).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        Color c = flash.color;
+        while (c.a < 1)
+        {
+            c.a += 0.03f;
+            flash.color = c;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        boss.SetActive(true);
+        while (c.a > 0)
+        {
+            c.a -= 0.03f;
+            flash.color = c;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        Time.timeScale = 1.0f;
+    }
     public IEnumerator StartRound()
     {
         eqSprite();
@@ -194,6 +218,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RoundClear()
     {
         currentRound++;
+        ball.ballCount = 0;
         ball.DestroyAllChild();
         Time.timeScale = 0.0f;
         LeftUI.transform.DOMove(new Vector3(-10, 0, 0), 1).SetUpdate(true);
@@ -205,7 +230,7 @@ public class GameManager : MonoBehaviour
         ball.ReSpawn();
         brickmaker.isClear = false;
         if (currentRound >= 3)
-            StartCoroutine(StartRound());
+            StartCoroutine(StartEasyBossRound());
         else
             StartCoroutine(StartRound());
             Items.DestroyAllChild();

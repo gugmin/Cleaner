@@ -8,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 using TMPro;
 public class ShopItem : MonoBehaviour
 {
-    int eq = 0;
+    [SerializeField] int eq = 0;
     public string[] shopItem = { "Sand", "Angel", "Shield", "Amulet" };
     public GameObject[] EquipCheck;
     [SerializeField] int SandPoint=300;
@@ -65,17 +65,19 @@ public class ShopItem : MonoBehaviour
     }
     public void EquipChk()
     {
+        int equipcnt = 0;
         for (int i = 0; i < shopItem.Length; i++)
         {
             if (PlayerPrefs.HasKey(shopItem[i]))
             {
                 EquipCheck[i].SetActive(true);
-                eq++;
+                equipcnt++;
             }
             else
             {
                 EquipCheck[i].SetActive(false);
             }
         }
+        eq = equipcnt;
     }
 }

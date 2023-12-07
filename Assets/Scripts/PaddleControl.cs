@@ -53,7 +53,10 @@ public class PaddleControl : MonoBehaviour
 
     public void SetInit()
     {
-        SetSpeed(5f);
+        if (PlayerPrefs.HasKey("Sand"))
+            SetSpeed(4f);
+        else
+            SetSpeed(5f);
         SetSize(1f);
         isHaste = false;
         isPower = false;

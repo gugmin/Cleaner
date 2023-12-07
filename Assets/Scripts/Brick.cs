@@ -23,19 +23,23 @@ public class Brick : MonoBehaviour
         if (collision.gameObject.tag == "Ball")
         {
 
-            int rand = Random.Range(0, 100);
-            if(rand < 20 + plusAmulet)
-            {
-                controller.CallItemEvent(transform.position);
-            }
+
 
             GameManager.I.score++;
             if (collision.gameObject.GetComponent<Ball>().itemname == ItemMaker.ItemName.Item_Steel)
                 HP -= 2;
             else
                 HP--;
-            if(HP<=0)
+            //벽돌이 사라질 때에만 아이템 생성
+            if (HP <= 0)
+            {
+                int rand = Random.Range(0, 100);
+                if (rand < 20 + plusAmulet)
+                {
+                    controller.CallItemEvent(transform.position);
+                }
                 Destroy(gameObject);
+            }
             // 공과 벽돌이 만났을 때 공이 다시 튕겨나오게 해야하는데 hmmhmm.. 여기서 구현해야하는가 Ball 에서 구현해야하는가 ?
         }
     }

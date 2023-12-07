@@ -6,7 +6,7 @@ public class Brick : MonoBehaviour
 {
     private InputEvent controller;
     private int plusAmulet = 10;
-
+    public int HP = 1;
     private void Awake()
     {
         controller = GetComponent<InputEvent>();
@@ -30,7 +30,12 @@ public class Brick : MonoBehaviour
             }
 
             GameManager.I.score++;
-            Destroy(gameObject);
+            if (collision.gameObject.GetComponent<Ball>().itemname == ItemMaker.ItemName.Item_Steel)
+                HP -= 2;
+            else
+                HP--;
+            if(HP<=0)
+                Destroy(gameObject);
             // 공과 벽돌이 만났을 때 공이 다시 튕겨나오게 해야하는데 hmmhmm.. 여기서 구현해야하는가 Ball 에서 구현해야하는가 ?
         }
     }

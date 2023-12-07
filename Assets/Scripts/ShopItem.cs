@@ -15,7 +15,8 @@ public class ShopItem : MonoBehaviour
     [SerializeField] int AngelPoint=500;
     [SerializeField] int ShieldPoint=700;
     [SerializeField] int AmuletPoint=900;
-    [SerializeField] Button[] btn;
+    [SerializeField] Button[] equipbtn;
+    [SerializeField] Button[] unequipbtn;
     [SerializeField] TMP_Text StudyPointTxt;
     [SerializeField] GameObject WarningUI;
     private void Awake()
@@ -26,16 +27,28 @@ public class ShopItem : MonoBehaviour
             StudyPointTxt.text = "누적 공부시간 : "+CurPoint.ToString()+"시간";
             //CurPoint = 500;
             if (CurPoint > AmuletPoint)
-                btn[3].interactable = true;
+            {
+                equipbtn[3].interactable = true;
+                unequipbtn[3].interactable = true;
+            }
 
             if (CurPoint > ShieldPoint)
-                btn[2].interactable = true;
+            {
+                equipbtn[2].interactable = true;
+                unequipbtn[2].interactable = true;
+            }
 
             if (CurPoint > AngelPoint)
-                btn[1].interactable = true;
+            {
+                equipbtn[1].interactable = true;
+                unequipbtn[1].interactable = true;
+            }
 
             if (CurPoint > SandPoint)
-                btn[0].interactable = true;
+            {
+                equipbtn[0].interactable = true;
+                unequipbtn[0].interactable = true;
+            }
         }
         EquipChk();
     }

@@ -23,6 +23,7 @@ public class NewNormalBossBrickMaker : MonoBehaviour
                 {
                     GameObject newBrick = Instantiate(brick);
                     newBrick.transform.parent = GameObject.Find("Bricks").transform;
+                    newBrick.GetComponent<Brick>().HP = 2;
                     float x = (i % 5) * 1.2f - 2.4f;
                     float y = 0.0f;
                     newBrick.transform.position = new Vector3(x, y, 0);
@@ -41,6 +42,7 @@ public class NewNormalBossBrickMaker : MonoBehaviour
                 {
                     GameObject newBrick = Instantiate(brick);
                     newBrick.transform.parent = GameObject.Find("Bricks").transform;
+                    newBrick.GetComponent<Brick>().HP = 2;
                     float x = (i % 5) * 1.2f - 2.4f;
                     float y = 0.0f;
                     newBrick.transform.position = new Vector3(x, y, 0);
@@ -54,6 +56,7 @@ public class NewNormalBossBrickMaker : MonoBehaviour
             {
                 GameObject newBrick = Instantiate(brick);
                 newBrick.transform.parent = GameObject.Find("Bricks").transform;
+                newBrick.GetComponent<Brick>().HP = 2;
                 float x = (i % 5) * 1.2f - 2.4f;
                 float y = -0.5f;
                 newBrick.transform.position = new Vector3(x, y, 0);

@@ -8,8 +8,9 @@ using Random = UnityEngine.Random;
 
 public class ItemMaker: MonoBehaviour
 {
+    public static ItemMaker I;
     #region 아이템 이름
-    enum ItemName
+    public enum ItemName
     {
         Item_Print = 0,
         Item_Steel = 1,
@@ -17,7 +18,8 @@ public class ItemMaker: MonoBehaviour
         Item_Power = 3,
         Item_Fire = 4,
         Item_Glue = 5,
-        Item_Haste = 6
+        Item_Haste = 6,
+        normal_ball = 7
     }
     #endregion
 
@@ -28,6 +30,7 @@ public class ItemMaker: MonoBehaviour
 
     private void Awake()
     {
+        I = this;
         controller = GetComponent<InputEvent>();
     }
 
@@ -38,8 +41,8 @@ public class ItemMaker: MonoBehaviour
 
     private void ItemMake(Vector2 position)
     {
-        int rand = Random.Range(0, 7);
-        //int rand = 0;
+        //int rand = Random.Range(0, 7);
+        int rand = 1;
 
         GameObject newItem = Instantiate(item);
         newItem.transform.position = position;

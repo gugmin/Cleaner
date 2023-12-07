@@ -59,6 +59,7 @@ public class Item : MonoBehaviour
                     for (int i = 0; i < ballParent.transform.childCount; i++)
                     {
                         Ball newball = ballParent.transform.GetChild(i).GetComponent<Ball>();
+                        newball.itemname = ItemMaker.ItemName.Item_Steel;
                         newball.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Item/SteelBall");
                         float damage = newball.GetDamage();
                         newball.SetDamage(damage * 2);

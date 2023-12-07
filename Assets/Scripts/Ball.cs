@@ -14,7 +14,9 @@ public class Ball : MonoBehaviour
     private float size { get; set; } = 0.2f;
 
     private float damage { get; set; } = 0.1f;
-    
+
+    //아이템 기본상태로 설정
+    public ItemMaker.ItemName itemname = ItemMaker.ItemName.normal_ball;
 
     bool isStart = false;
     float mag;

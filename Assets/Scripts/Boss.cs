@@ -35,10 +35,18 @@ public class Boss : MonoBehaviour
         {
             // 투명도 줄이기
             Color Mirrorcolor = Mirror.color;
-            Mirrorcolor.a -= ballDamage;
-            Selectpattern();
             // image길이 줄이기, 전체가 1이기 때문에 0.1씩 줄이게 되면 총 10대를 맞게 된다.
-            HpBar.fillAmount -= ballDamage;
+            if (collision.gameObject.GetComponent<Ball>().itemname == ItemMaker.ItemName.Item_Steel)
+            {
+                HpBar.fillAmount -= ballDamage * 2;
+                Mirrorcolor.a -= ballDamage * 2;
+            }
+            else
+            {
+                HpBar.fillAmount -= ballDamage;
+                Mirrorcolor.a -= ballDamage;
+            }
+            Selectpattern();
             // 강철공일 경우 0.2 데미지가 들어가도록 해야함.
             if (HpBar.fillAmount < 0f)
             {

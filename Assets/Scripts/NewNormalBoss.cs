@@ -58,7 +58,11 @@ public class NewNormalBoss : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball")) // boss 와 Ball 이 만나면 Boss 가 데미지 입음.
         {
-            hpBar.fillAmount -= 0.05f;
+
+            if (collision.gameObject.GetComponent<Ball>().itemname == ItemMaker.ItemName.Item_Steel)
+                hpBar.fillAmount -= 0.1f;
+            else
+                hpBar.fillAmount -= 0.05f;
 
             //TODO RandomBrickSpawn
             nbBrickMaker.RandomBrickSpawn(hpBar.fillAmount);
